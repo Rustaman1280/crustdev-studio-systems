@@ -14,6 +14,8 @@ local tests = {
   { name = "SynthetixWorldGen", path = "./test_worldgen" },
   { name = "RaycastSuspension", path = "./test_suspension" },
   { name = "CombatPredictor", path = "./test_combat_predictor" },
+  { name = "ActionBuffer", path = "./test_action_buffer" },
+  { name = "HitboxCaster", path = "./test_hitbox_caster" },
 }
 
 local passed = 0

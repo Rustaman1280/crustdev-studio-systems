@@ -18,6 +18,8 @@ crustdev-studio-systems/
 └── src/
     ├── ReplicatedStorage/
     │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
+    │   ├── Combat/
+    │   │   └── HitboxCaster.luau           # Continuous raycast and segment sweep collision
     │   ├── Spatial/
     │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
     │   └── Net/
@@ -28,6 +30,7 @@ crustdev-studio-systems/
     │       └── RaycastSuspension.luau      # Raycast vehicle suspension physics engine
     └── StarterPlayerScripts/
         └── Controllers/
+            ├── ActionBuffer.luau           # Input buffer queue with combo detection
             ├── CombatPredictor.luau        # Client prediction with RTT smoothing
             └── SnapshotInterpolator.luau   # Cubic Hermite transform interpolation and jitter buffer
 ```
@@ -68,9 +71,19 @@ crustdev-studio-systems/
 - Shortest-path angular interpolation for yaw orientation.
 - Jitter buffer with bounded dead-reckoning extrapolation and velocity damping during network lag.
 
+### 8. ActionBuffer (`StarterPlayerScripts/Controllers/ActionBuffer.luau`)
+- Client-side input buffering with configurable TTL window and priority-sorted consumption.
+- Action-level cooldown enforcement preventing input flooding.
+- Combo sequence pattern recognition and execution history ring buffer.
+
+### 9. HitboxCaster (`ReplicatedStorage/Combat/HitboxCaster.luau`)
+- Frame-rate independent continuous raycast sweeping across blade points of interest.
+- Sub-step CFrame Lerp interpolation to eliminate melee tunneling against thin colliders.
+- Cross-segment edge connection sweeps and swing debounce sets preventing multi-hits.
+
 ## Testing with Lune
 
-All 7 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 9 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -84,6 +97,8 @@ Test coverage includes:
 - `SynthetixWorldGen`: Deterministic elevation sampling, seed variation, resolution bounds, and multi-octave chunk generation.
 - `RaycastSuspension`: Default wheel configurations, airborne zero-force state, grounded Hooke spring compression, and lateral slide friction.
 - `CombatPredictor`: Exponential moving average ping smoothing, predictive client forecast creation, PacketSchema conformance, and server reconciliation.
+- `ActionBuffer`: Priority queuing, buffer window expiration, cooldown tracking, and combo sequence detection.
+- `HitboxCaster`: Point sweeping, debounce validation, sub-step interpolation, and edge segment checks.
 
 ## Rojo Sync Workflow
 
