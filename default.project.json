@@ -1,0 +1,27 @@
+{
+  "name": "crustdev-studio-systems",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "CrustStudio": {
+        "$path": "src/ReplicatedStorage"
+      }
+    },
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "CrustStudio": {
+        "$path": "src/ServerScriptService"
+      }
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "CrustStudio": {
+          "$path": "src/StarterPlayerScripts"
+        }
+      }
+    }
+  }
+}
