@@ -18,6 +18,8 @@ crustdev-studio-systems/
 └── src/
     ├── ReplicatedStorage/
     │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
+    │   ├── Spatial/
+    │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
     │   └── Net/
     │       └── PacketSchema.luau           # Strict packet serialization and validation
     ├── ServerScriptService/
@@ -26,7 +28,8 @@ crustdev-studio-systems/
     │       └── RaycastSuspension.luau      # Raycast vehicle suspension physics engine
     └── StarterPlayerScripts/
         └── Controllers/
-            └── CombatPredictor.luau        # Client prediction with RTT smoothing
+            ├── CombatPredictor.luau        # Client prediction with RTT smoothing
+            └── SnapshotInterpolator.luau   # Cubic Hermite transform interpolation and jitter buffer
 ```
 
 ## Luau Layer Contracts
@@ -54,6 +57,16 @@ crustdev-studio-systems/
 - Local hit forecasting with zero-latency client presentation.
 - Exponential moving average round-trip time (RTT) tracking.
 - Reconciliation on server authority feedback.
+
+### 6. SpatialHashGrid (`ReplicatedStorage/Spatial/SpatialHashGrid.luau`)
+- O(1) broadphase proximity queries replacing expensive O(N) workspace iteration.
+- Configurable bucket cell bounds, radial sphere queries, and AABB intersection filtering.
+- Dynamic entity insertion, continuous movement updates, and automatic empty-cell pruning.
+
+### 7. SnapshotInterpolator (`StarterPlayerScripts/Controllers/SnapshotInterpolator.luau`)
+- Client transform smoothing with Hermite cubic spline interpolation using velocity tangents.
+- Shortest-path angular interpolation for yaw orientation.
+- Jitter buffer with bounded dead-reckoning extrapolation and velocity damping during network lag.
 
 ## Rojo Sync Workflow
 
