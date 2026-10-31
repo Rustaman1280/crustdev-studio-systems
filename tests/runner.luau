@@ -1,6 +1,8 @@
 local roblox = require("@lune/roblox")
 _G.Vector3 = roblox.Vector3
+_G.CFrame = roblox.CFrame
 Vector3 = roblox.Vector3
+CFrame = roblox.CFrame
 
 print("=== crustdev studio systems Luau test suite ===")
 
@@ -9,6 +11,9 @@ local tests = {
   { name = "PacketSchema", path = "./test_packet" },
   { name = "RollbackBuffer", path = "./test_rollback" },
   { name = "SnapshotInterpolator", path = "./test_interpolator" },
+  { name = "SynthetixWorldGen", path = "./test_worldgen" },
+  { name = "RaycastSuspension", path = "./test_suspension" },
+  { name = "CombatPredictor", path = "./test_combat_predictor" },
 }
 
 local passed = 0

@@ -68,6 +68,23 @@ crustdev-studio-systems/
 - Shortest-path angular interpolation for yaw orientation.
 - Jitter buffer with bounded dead-reckoning extrapolation and velocity damping during network lag.
 
+## Testing with Lune
+
+All 7 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+
+```bash
+lune run tests/runner.luau
+```
+
+Test coverage includes:
+- `SpatialHashGrid`: O(1) uniform spatial hashing, radial queries, bounding box queries, dynamic entity transfers, and cell cleanup.
+- `PacketSchema`: Header sequencing, drift protection, anti-exploit direction normalization, and 0.01-stud precision vector compression.
+- `RollbackBuffer`: 120-tick ring buffer, retroactive timeline position reconstruction, and lag-compensated raycast hit reconciliation.
+- `SnapshotInterpolator`: Cubic Hermite velocity spline interpolation and dead-reckoning extrapolation with jitter resistance.
+- `SynthetixWorldGen`: Deterministic elevation sampling, seed variation, resolution bounds, and multi-octave chunk generation.
+- `RaycastSuspension`: Default wheel configurations, airborne zero-force state, grounded Hooke spring compression, and lateral slide friction.
+- `CombatPredictor`: Exponential moving average ping smoothing, predictive client forecast creation, PacketSchema conformance, and server reconciliation.
+
 ## Rojo Sync Workflow
 
 Install Rojo and connect to Roblox Studio:
