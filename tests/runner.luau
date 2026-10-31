@@ -16,6 +16,8 @@ local tests = {
   { name = "CombatPredictor", path = "./test_combat_predictor" },
   { name = "ActionBuffer", path = "./test_action_buffer" },
   { name = "HitboxCaster", path = "./test_hitbox_caster" },
+  { name = "StatusEffectManager", path = "./test_status_effects" },
+  { name = "ProjectileSolver", path = "./test_projectile_solver" },
 }
 
 local passed = 0

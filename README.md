@@ -19,7 +19,9 @@ crustdev-studio-systems/
     ├── ReplicatedStorage/
     │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
     │   ├── Combat/
-    │   │   └── HitboxCaster.luau           # Continuous raycast and segment sweep collision
+    │   │   ├── HitboxCaster.luau           # Continuous raycast and segment sweep collision
+    │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
+    │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
     │   ├── Spatial/
     │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
     │   └── Net/
@@ -81,9 +83,20 @@ crustdev-studio-systems/
 - Sub-step CFrame Lerp interpolation to eliminate melee tunneling against thin colliders.
 - Cross-segment edge connection sweeps and swing debounce sets preventing multi-hits.
 
+### 10. StatusEffectManager (`ReplicatedStorage/Combat/StatusEffectManager.luau`)
+- Authoritative lifecycle management for buffs, debuffs, crowd control, and damage over time.
+- Flexible stacking policies: Refresh, Stack (capped with duration refresh), Extend, and Independent.
+- Compound stat modifier resolution combining Flat, Additive, and Multiplicative calculations.
+- Periodic tick accumulation for DoT/HoT damage and lightweight snapshot replication.
+
+### 11. ProjectileSolver (`ReplicatedStorage/Combat/ProjectileSolver.luau`)
+- Deterministic sub-step ballistic trajectory simulator with drag physics and gravity scaling.
+- Multi-phase collision detection with obstacle penetration piercing and specular restitution bouncing.
+- Closed-form analytical ballistic launch velocity solver for high-arc and low-arc predictive targeting.
+
 ## Testing with Lune
 
-All 9 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 11 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -99,6 +112,8 @@ Test coverage includes:
 - `CombatPredictor`: Exponential moving average ping smoothing, predictive client forecast creation, PacketSchema conformance, and server reconciliation.
 - `ActionBuffer`: Priority queuing, buffer window expiration, cooldown tracking, and combo sequence detection.
 - `HitboxCaster`: Point sweeping, debounce validation, sub-step interpolation, and edge segment checks.
+- `StatusEffectManager`: Stacking policies, CC flags, compound modifiers, periodic DoT ticks, and independent stack decays.
+- `ProjectileSolver`: Sub-step trajectory integration, piercing limits, restitution bouncing, and closed-form ballistic arc solving.
 
 ## Rojo Sync Workflow
 
