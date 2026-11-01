@@ -15,26 +15,29 @@ Designed for high-performance Roblox titles produced by the crustdev studio coll
 crustdev-studio-systems/
 ├── default.project.json                    # Rojo project definition
 ├── README.md                               # Architecture and documentation
-└── src/
-    ├── ReplicatedStorage/
-    │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
-    │   ├── Audio/
-    │   │   └── AdaptiveSoundtrackManager.luau # Dynamic stem crossfader, ducking, and acoustic occlusion
-    │   ├── Combat/
-    │   │   ├── HitboxCaster.luau           # Continuous raycast and segment sweep collision
-    │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
-    │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
-    │   ├── Economy/
-    │   │   └── InventoryGrid.luau          # 2D spatial inventory with rotation, stacking, and auto-pack
-    │   ├── Spatial/
-    │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
-    │   └── Net/
-    │       └── PacketSchema.luau           # Strict packet serialization and validation
-    ├── ServerScriptService/
-    │   └── Services/
-    │       ├── RollbackBuffer.luau         # Authoritative 120-tick snapshot ring buffer
-    │       └── RaycastSuspension.luau      # Raycast vehicle suspension physics engine
-    └── StarterPlayerScripts/
+├── src/
+│   ├── ReplicatedStorage/
+│   │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
+│   │   ├── AI/
+│   │   │   └── BehaviorTree.luau              # Composable Behavior Tree engine with memory and Blackboard
+│   │   ├── Audio/
+│   │   │   └── AdaptiveSoundtrackManager.luau # Dynamic stem crossfader, ducking, and acoustic occlusion
+│   │   ├── Combat/
+│   │   │   ├── HitboxCaster.luau           # Continuous raycast and segment sweep collision
+│   │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
+│   │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
+│   │   ├── Economy/
+│   │   │   └── InventoryGrid.luau          # 2D spatial inventory with rotation, stacking, and auto-pack
+│   │   ├── Spatial/
+│   │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
+│   │   └── Net/
+│   │       └── PacketSchema.luau           # Strict packet serialization and validation
+│   ├── ServerScriptService/
+│   │   └── Services/
+│   │       ├── InterestManager.luau        # Area of Interest (AOI) tiered spatial replication engine
+│   │       ├── RollbackBuffer.luau         # Authoritative 120-tick snapshot ring buffer
+│   │       └── RaycastSuspension.luau      # Raycast vehicle suspension physics engine
+│   └── StarterPlayerScripts/
         └── Controllers/
             ├── ActionBuffer.luau           # Input buffer queue with combo detection
             ├── CombatPredictor.luau        # Client prediction with RTT smoothing
@@ -113,9 +116,21 @@ crustdev-studio-systems/
 - Greedy First-Fit Decreasing (FFD) 2D bin packing algorithm (AutoPack) for automated inventory sorting.
 - Full network-safe serialization and deserialization routines for client-server state replication.
 
+### 14. BehaviorTree (`ReplicatedStorage/AI/BehaviorTree.luau`)
+- Modular Behavior Tree decision architecture for autonomous NPC agents, bosses, and environmental entities.
+- Composite nodes: Sequence (sequential execution with memory), Selector (fallback priority selection), and Parallel (concurrent execution with RequireAll / RequireOne completion policies).
+- Decorator nodes: Inverter, Succeeder, and Repeater with loop bounds and failure break policies.
+- Type-safe Blackboard implementation with default fallbacks, key removal, and isolated state dictionaries.
+
+### 15. InterestManager (`ServerScriptService/Services/InterestManager.luau`)
+- Area of Interest (AOI) spatial replication manager for multiplayer open-world Roblox servers.
+- Tiered observer horizons (Immediate, Near, Far, Culled) with distance-proportional update cadences.
+- Replication delta calculation tracking Entered, Updated, TierChanged, and Exited entities per observer.
+- Per-observer bandwidth and packet budgeting enforcing strict entity count caps prioritized by tier weight and entity importance score.
+
 ## Testing with Lune
 
-All 13 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 15 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -135,6 +150,8 @@ Test coverage includes:
 - `ProjectileSolver`: Sub-step trajectory integration, piercing limits, restitution bouncing, and closed-form ballistic arc solving.
 - `AdaptiveSoundtrackManager`: Initialization, slew rate filtering, curve gain evaluation, ducking envelope stages, acoustic occlusion cutoff, and beat/bar quantization.
 - `InventoryGrid`: 2D bounds validation, collision rejection, spatial relocation, rotation transforms, stack merging/splitting, serialization, and FFD bin packing.
+- `BehaviorTree`: Blackboard storage, actions, conditions, sequence memory resumption, selector fallbacks, parallel concurrency, and decorators.
+- `InterestManager`: Distance-to-tier classification, initial discovery, tick rate cadence, tier transitions, horizon exits, and bandwidth budget limits.
 
 ## Rojo Sync Workflow
 

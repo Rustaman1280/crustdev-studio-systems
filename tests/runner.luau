@@ -20,6 +20,8 @@ local tests = {
   { name = "ProjectileSolver", path = "./test_projectile_solver" },
   { name = "AdaptiveSoundtrackManager", path = "./test_audio_manager" },
   { name = "InventoryGrid", path = "./test_inventory_grid" },
+  { name = "BehaviorTree", path = "./test_behavior_tree" },
+  { name = "InterestManager", path = "./test_interest_manager" },
 }
 
 local passed = 0
