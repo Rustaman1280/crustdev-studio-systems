@@ -18,6 +18,8 @@ local tests = {
   { name = "HitboxCaster", path = "./test_hitbox_caster" },
   { name = "StatusEffectManager", path = "./test_status_effects" },
   { name = "ProjectileSolver", path = "./test_projectile_solver" },
+  { name = "AdaptiveSoundtrackManager", path = "./test_audio_manager" },
+  { name = "InventoryGrid", path = "./test_inventory_grid" },
 }
 
 local passed = 0

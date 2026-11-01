@@ -18,10 +18,14 @@ crustdev-studio-systems/
 └── src/
     ├── ReplicatedStorage/
     │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
+    │   ├── Audio/
+    │   │   └── AdaptiveSoundtrackManager.luau # Dynamic stem crossfader, ducking, and acoustic occlusion
     │   ├── Combat/
     │   │   ├── HitboxCaster.luau           # Continuous raycast and segment sweep collision
     │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
     │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
+    │   ├── Economy/
+    │   │   └── InventoryGrid.luau          # 2D spatial inventory with rotation, stacking, and auto-pack
     │   ├── Spatial/
     │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
     │   └── Net/
@@ -94,9 +98,24 @@ crustdev-studio-systems/
 - Multi-phase collision detection with obstacle penetration piercing and specular restitution bouncing.
 - Closed-form analytical ballistic launch velocity solver for high-arc and low-arc predictive targeting.
 
+### 12. AdaptiveSoundtrackManager (`ReplicatedStorage/Audio/AdaptiveSoundtrackManager.luau`)
+- Dynamic multi-stem audio director and adaptive acoustic manager bridging crustdev studio with crustdev records stems.
+- Continuous intensity slew rate smoothing with distinct attack and decay slew rates.
+- Stem gain crossfading (Linear, Quadratic, and Exponential response curves).
+- Beat and bar quantization calculations for rhythmic musical transitions on downbeat boundaries.
+- Dynamic priority ducking envelope (Attack, Hold, Release) for high-impact SFX and dialogue.
+- Acoustic raycast occlusion filter calculation estimating low-pass filter (LPF) cutoff frequencies.
+
+### 13. InventoryGrid (`ReplicatedStorage/Economy/InventoryGrid.luau`)
+- 2D spatial matrix inventory system with cell occupancy tracking for RPG and tactical survival games.
+- Multi-cell items with 90-degree spatial rotation and collision boundary enforcement.
+- Stack merging and quantity splitting for stackable goods.
+- Greedy First-Fit Decreasing (FFD) 2D bin packing algorithm (AutoPack) for automated inventory sorting.
+- Full network-safe serialization and deserialization routines for client-server state replication.
+
 ## Testing with Lune
 
-All 11 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 13 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -114,6 +133,8 @@ Test coverage includes:
 - `HitboxCaster`: Point sweeping, debounce validation, sub-step interpolation, and edge segment checks.
 - `StatusEffectManager`: Stacking policies, CC flags, compound modifiers, periodic DoT ticks, and independent stack decays.
 - `ProjectileSolver`: Sub-step trajectory integration, piercing limits, restitution bouncing, and closed-form ballistic arc solving.
+- `AdaptiveSoundtrackManager`: Initialization, slew rate filtering, curve gain evaluation, ducking envelope stages, acoustic occlusion cutoff, and beat/bar quantization.
+- `InventoryGrid`: 2D bounds validation, collision rejection, spatial relocation, rotation transforms, stack merging/splitting, serialization, and FFD bin packing.
 
 ## Rojo Sync Workflow
 
