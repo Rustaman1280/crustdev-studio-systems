@@ -26,6 +26,8 @@ local tests = {
   { name = "DeltaCompressor", path = "./test_delta_compressor" },
   { name = "ClockSync", path = "./test_clock_sync" },
   { name = "SparseOctree", path = "./test_sparse_octree" },
+  { name = "PathfindingAStar3D", path = "./test_pathfinding_3d" },
+  { name = "StateMachine", path = "./test_state_machine" },
 }
 
 local passed = 0

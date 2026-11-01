@@ -19,7 +19,8 @@ crustdev-studio-systems/
 │   ├── ReplicatedStorage/
 │   │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
 │   │   ├── AI/
-│   │   │   └── BehaviorTree.luau              # Composable Behavior Tree engine with memory and Blackboard
+│   │   │   ├── BehaviorTree.luau              # Composable Behavior Tree engine with memory and Blackboard
+│   │   │   └── PathfindingAStar3D.luau        # 3D A* navigation graph, vertical constraints, and path smoothing
 │   │   ├── Animation/
 │   │   │   └── TwoBoneIK.luau                 # Analytical two-bone Inverse Kinematics and foot placement solver
 │   │   ├── Audio/
@@ -33,6 +34,8 @@ crustdev-studio-systems/
 │   │   ├── Spatial/
 │   │   │   ├── SparseOctree.luau          # 3D hierarchical dynamic octree spatial acceleration structure
 │   │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
+│   │   ├── State/
+│   │   │   └── StateMachine.luau           # Hierarchical Finite State Machine (HFSM) with state stack
 │   │   └── Net/
 │   │       ├── ClockSync.luau              # Cristian's algorithm clock sync with outlier filtering
 │   │       ├── DeltaCompressor.luau        # Bitmasked delta state serialization and quantization engine
@@ -164,9 +167,27 @@ crustdev-studio-systems/
 - Raycast broadphase traversal finding nearest spherical entity intersections with hit distance calculations.
 - Dynamic entity repositioning with fast-path local node checks and cross-octant re-indexing.
 
+### 20. PathfindingAStar3D (`ReplicatedStorage/AI/PathfindingAStar3D.luau`)
+- 3D navigation graph and volumetric A* pathfinder with binary min-heap priority queue (O(log N) node extraction).
+- 3D spatial heuristics: Euclidean, Manhattan, and Octile distance metrics with tunable heuristic weighting.
+- Asymmetric vertical movement constraints: independent climb height and drop height thresholds.
+- Tick-budget enforcement via MaxExpansions limit with graceful fallback to closest visited partial path.
+- Incline slope weighting and dynamic node hazard penalty costs.
+- String-pulling path smoothing (Raycast line-of-sight shortcutting) collapsing intermediate zig-zag waypoints.
+- Volumetric 3D grid generator helper for terrain and multi-level structures.
+
+### 21. StateMachine (`ReplicatedStorage/State/StateMachine.luau`)
+- Hierarchical Finite State Machine (HFSM) engine for player locomotion, combat stances, and NPC boss phases.
+- Strict state lifecycle hooks: OnEnter(fromState, ...), OnExit(toState), OnUpdate(dt), and OnEvent(eventName, ...).
+- Lowest Common Ancestor (LCA) transition resolution preventing redundant parent state re-initialization.
+- Guarded transition rules with conditional predicate validation.
+- State stack push/pop mechanism for temporary interrupts, hit reactions, and stun states.
+- Event bubbling from leaf state up through ancestor chain with event consumption flags.
+- Full state lineage queries and Blackboard key-value context storage.
+
 ## Testing with Lune
 
-All 19 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 21 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -192,6 +213,8 @@ Test coverage includes:
 - `DeltaCompressor`: Yaw/pitch quantization roundtrips, dirty bitmask tracking, full keyframe serialization, delta buffer compression efficiency, client baseline merging, and 100-entity batch throughput.
 - `ClockSync`: Warm-up progression, Cristian offset estimation, jitter outlier rejection, monotonic server clock, timestamp translation, and ring buffer capacity.
 - `SparseOctree`: 3D node subdivision, 8 child octants, sphere radius queries, 3D AABB queries, raycast intersection, boundary re-indexing, and entity removal.
+- `PathfindingAStar3D`: Graph/edge operations, nearest neighbor search, obstacle avoidance, slope and hazard penalties, vertical climb/drop limits, 3D grid navigation, expansion budget limits, and line-of-sight path smoothing.
+- `StateMachine`: Flat and hierarchical states, LCA ancestor traversal, guarded transitions, state stack push/pop, event bubbling, and Blackboard data sharing.
 
 ## Rojo Sync Workflow
 
