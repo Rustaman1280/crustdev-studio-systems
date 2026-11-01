@@ -185,9 +185,29 @@ crustdev-studio-systems/
 - Event bubbling from leaf state up through ancestor chain with event consumption flags.
 - Full state lineage queries and Blackboard key-value context storage.
 
+### 22. ClientPredictionReconciler (`ReplicatedStorage/Net/ClientPredictionReconciler.luau`)
+- Client-side prediction and server reconciliation engine for responsive multiplayer locomotion.
+- Sequence-indexed user command ring buffer with bounded history.
+- Forward physics stepping with configurable acceleration and movement parameters.
+- Authoritative server state reconciliation with configurable position/velocity drift thresholds.
+- Fast-forward rollback replay for pending unacknowledged commands upon misprediction.
+- Visual error dampening with exponential decay (anti-jitter and rubberband smoothing).
+- Telemetry counters: misprediction count, drift magnitude, and total replay steps.
+
+### 23. DungeonGraph (`ReplicatedStorage/Procedural/DungeonGraph.luau`)
+- Procedural 2D/3D dungeon generator and topology analyzer using Binary Space Partitioning (BSP).
+- Deterministic pseudo-random generation with configurable seed (SplitMix32 PRNG).
+- Recursive spatial subdivision with aspect-ratio balancing.
+- Organic L-shaped corridor carving with hallway smoothing.
+- Automatic airtight perimeter wall boundary detection.
+- Graph topology analysis with BFS distance field solving.
+- Semantic room categorization: Spawn, Boss (deepest topological node), Loot (dead-ends), and Standard.
+- Fast 2D DDA grid raycasting for line-of-sight and room occlusion testing.
+- ASCII map serialization for visualization and regression diagnostics.
+
 ## Testing with Lune
 
-All 21 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 23 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -215,6 +235,8 @@ Test coverage includes:
 - `SparseOctree`: 3D node subdivision, 8 child octants, sphere radius queries, 3D AABB queries, raycast intersection, boundary re-indexing, and entity removal.
 - `PathfindingAStar3D`: Graph/edge operations, nearest neighbor search, obstacle avoidance, slope and hazard penalties, vertical climb/drop limits, 3D grid navigation, expansion budget limits, and line-of-sight path smoothing.
 - `StateMachine`: Flat and hierarchical states, LCA ancestor traversal, guarded transitions, state stack push/pop, event bubbling, and Blackboard data sharing.
+- `ClientPredictionReconciler`: Sequence tracking, input forward prediction, authoritative server reconciliation, rollback replay, and visual error exponential decay smoothing.
+- `DungeonGraph`: BSP recursive partitioning, seed determinism, airtight wall borders, BFS topology depth solving, Spawn/Boss/Loot classification, raycasting, and ASCII map serialization.
 
 ## Rojo Sync Workflow
 

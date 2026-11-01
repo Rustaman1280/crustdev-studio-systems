@@ -28,6 +28,8 @@ local tests = {
   { name = "SparseOctree", path = "./test_sparse_octree" },
   { name = "PathfindingAStar3D", path = "./test_pathfinding_3d" },
   { name = "StateMachine", path = "./test_state_machine" },
+  { name = "ClientPredictionReconciler", path = "./test_prediction_reconciler" },
+  { name = "DungeonGraph", path = "./test_dungeon_graph" },
 }
 
 local passed = 0
