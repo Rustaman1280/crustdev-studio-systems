@@ -25,7 +25,10 @@ crustdev-studio-systems/
 │   │   │   └── TwoBoneIK.luau                 # Analytical two-bone Inverse Kinematics and foot placement solver
 │   │   ├── Audio/
 │   │   │   └── AdaptiveSoundtrackManager.luau # Dynamic stem crossfader, ducking, and acoustic occlusion
+│   │   ├── Camera/
+│   │   │   └── CameraSpring.luau              # Analytical ODE spring system, recoil kick, and camera trauma
 │   │   ├── Combat/
+│   │   │   ├── DamagePipeline.luau            # Deterministic multi-stage armor, crit, shield, and lifesteal pipeline
 │   │   │   ├── HitboxCaster.luau           # Continuous raycast and segment sweep collision
 │   │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
 │   │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
@@ -205,9 +208,23 @@ crustdev-studio-systems/
 - Fast 2D DDA grid raycasting for line-of-sight and room occlusion testing.
 - ASCII map serialization for visualization and regression diagnostics.
 
+### 24. DamagePipeline (`ReplicatedStorage/Combat/DamagePipeline.luau`)
+- Multi-stage combat damage resolution pipeline: Base Damage -> Attacker Buffs -> Crit Roll -> Armor Mitigation -> Elemental Affinities -> Flat Reductions -> Shield Layers -> Health Damage -> Lifesteal and Damage Reflection.
+- Hyperbolic armor mitigation curve with flat and percentage armor penetration.
+- Elemental affinities (-100% to +90%) with resistance caps and true damage bypass.
+- Multi-layered shield and barrier absorption with bleedthrough support.
+- Deterministic pseudo-random number generator (LCG) for critical strike resolution.
+
+### 25. CameraSpring (`ReplicatedStorage/Camera/CameraSpring.luau`)
+- Exact second-order harmonic oscillator ODE integration (critically damped, underdamped, overdamped).
+- Closed-form analytical solver immune to variable frame-rate explosion, drift, or numerical instability.
+- 3D positional and rotational spring solving for weapon recoil and viewmodel kick.
+- Non-linear camera trauma system with cubic power falloff for explosions and impacts.
+- FOV spring smoother for high-speed sprinting, dashing, and zoom transitions.
+
 ## Testing with Lune
 
-All 23 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 25 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -237,6 +254,8 @@ Test coverage includes:
 - `StateMachine`: Flat and hierarchical states, LCA ancestor traversal, guarded transitions, state stack push/pop, event bubbling, and Blackboard data sharing.
 - `ClientPredictionReconciler`: Sequence tracking, input forward prediction, authoritative server reconciliation, rollback replay, and visual error exponential decay smoothing.
 - `DungeonGraph`: BSP recursive partitioning, seed determinism, airtight wall borders, BFS topology depth solving, Spawn/Boss/Loot classification, raycasting, and ASCII map serialization.
+- `DamagePipeline`: Deterministic crit rolling, hyperbolic armor mitigation, flat/percent armor penetration, elemental affinities, flat reductions, multi-layer shield absorption, true damage bypass, lifesteal, and reflection.
+- `CameraSpring`: Analytical ODE integration, critical damping non-overshoot, underdamped oscillation, recoil kick, trauma cubic dissipation, FOV smooth transitions, and numerical stability under extreme timesteps.
 
 ## Rojo Sync Workflow
 

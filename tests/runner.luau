@@ -30,6 +30,8 @@ local tests = {
   { name = "StateMachine", path = "./test_state_machine" },
   { name = "ClientPredictionReconciler", path = "./test_prediction_reconciler" },
   { name = "DungeonGraph", path = "./test_dungeon_graph" },
+  { name = "DamagePipeline", path = "./test_damage_pipeline" },
+  { name = "CameraSpring", path = "./test_camera_spring" },
 }
 
 local passed = 0
