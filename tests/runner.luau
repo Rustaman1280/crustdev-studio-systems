@@ -22,6 +22,8 @@ local tests = {
   { name = "InventoryGrid", path = "./test_inventory_grid" },
   { name = "BehaviorTree", path = "./test_behavior_tree" },
   { name = "InterestManager", path = "./test_interest_manager" },
+  { name = "TwoBoneIK", path = "./test_two_bone_ik" },
+  { name = "DeltaCompressor", path = "./test_delta_compressor" },
 }
 
 local passed = 0

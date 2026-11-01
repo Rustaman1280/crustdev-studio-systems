@@ -20,6 +20,8 @@ crustdev-studio-systems/
 │   │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
 │   │   ├── AI/
 │   │   │   └── BehaviorTree.luau              # Composable Behavior Tree engine with memory and Blackboard
+│   │   ├── Animation/
+│   │   │   └── TwoBoneIK.luau                 # Analytical two-bone Inverse Kinematics and foot placement solver
 │   │   ├── Audio/
 │   │   │   └── AdaptiveSoundtrackManager.luau # Dynamic stem crossfader, ducking, and acoustic occlusion
 │   │   ├── Combat/
@@ -31,6 +33,7 @@ crustdev-studio-systems/
 │   │   ├── Spatial/
 │   │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
 │   │   └── Net/
+│   │       ├── DeltaCompressor.luau        # Bitmasked delta state serialization and quantization engine
 │   │       └── PacketSchema.luau           # Strict packet serialization and validation
 │   ├── ServerScriptService/
 │   │   └── Services/
@@ -128,9 +131,25 @@ crustdev-studio-systems/
 - Replication delta calculation tracking Entered, Updated, TierChanged, and Exited entities per observer.
 - Per-observer bandwidth and packet budgeting enforcing strict entity count caps prioritized by tier weight and entity importance score.
 
+### 16. TwoBoneIK (`ReplicatedStorage/Animation/TwoBoneIK.luau`)
+- Analytical two-bone Inverse Kinematics solver using the Law of Cosines for humanoid and creature limbs (legs/arms).
+- Pole vector constraint enforcement for realistic knee/elbow bending planes without axis flips.
+- Singular orthonormal basis matrix construction ensuring zero NaN values even on vertical collinear vectors.
+- Surface normal foot alignment with configurable maximum tilt clamping for uneven slopes and stairs.
+- Dynamic multi-limb pelvic drop compensation calculating required hip descent to prevent foot floating on depressions.
+- Locomotion foot target prediction with velocity lead vectors and ground plane constraint clamping.
+
+### 17. DeltaCompressor (`ReplicatedStorage/Net/DeltaCompressor.luau`)
+- Bitmasked delta state serialization engine for high-cadence multiplayer replication with minimal bandwidth.
+- Differential state comparison against client baseline snapshots emitting only mutated fields.
+- Fixed-point coordinate quantization (0.05 stud resolution) and velocity quantization (0.1 stud/s resolution).
+- 8-bit unsigned integer yaw quantization and 8-bit signed integer pitch quantization.
+- Native binary buffer serialization with automatic buffer shrinkage and zero heap garbage allocations.
+- Client-side baseline snapshot merging with out-of-order sequence detection and recovery.
+
 ## Testing with Lune
 
-All 15 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 17 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -152,6 +171,8 @@ Test coverage includes:
 - `InventoryGrid`: 2D bounds validation, collision rejection, spatial relocation, rotation transforms, stack merging/splitting, serialization, and FFD bin packing.
 - `BehaviorTree`: Blackboard storage, actions, conditions, sequence memory resumption, selector fallbacks, parallel concurrency, and decorators.
 - `InterestManager`: Distance-to-tier classification, initial discovery, tick rate cadence, tier transitions, horizon exits, and bandwidth budget limits.
+- `TwoBoneIK`: Analytical solve, pole vector plane, overextension reach clamp, minimum reach singularity protection, ground normal alignment, pelvic drop compensation, and stride prediction.
+- `DeltaCompressor`: Yaw/pitch quantization roundtrips, dirty bitmask tracking, full keyframe serialization, delta buffer compression efficiency, client baseline merging, and 100-entity batch throughput.
 
 ## Rojo Sync Workflow
 
