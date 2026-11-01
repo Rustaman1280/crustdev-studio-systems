@@ -24,6 +24,8 @@ local tests = {
   { name = "InterestManager", path = "./test_interest_manager" },
   { name = "TwoBoneIK", path = "./test_two_bone_ik" },
   { name = "DeltaCompressor", path = "./test_delta_compressor" },
+  { name = "ClockSync", path = "./test_clock_sync" },
+  { name = "SparseOctree", path = "./test_sparse_octree" },
 }
 
 local passed = 0

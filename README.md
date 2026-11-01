@@ -31,8 +31,10 @@ crustdev-studio-systems/
 │   │   ├── Economy/
 │   │   │   └── InventoryGrid.luau          # 2D spatial inventory with rotation, stacking, and auto-pack
 │   │   ├── Spatial/
+│   │   │   ├── SparseOctree.luau          # 3D hierarchical dynamic octree spatial acceleration structure
 │   │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
 │   │   └── Net/
+│   │       ├── ClockSync.luau              # Cristian's algorithm clock sync with outlier filtering
 │   │       ├── DeltaCompressor.luau        # Bitmasked delta state serialization and quantization engine
 │   │       └── PacketSchema.luau           # Strict packet serialization and validation
 │   ├── ServerScriptService/
@@ -147,9 +149,24 @@ crustdev-studio-systems/
 - Native binary buffer serialization with automatic buffer shrinkage and zero heap garbage allocations.
 - Client-side baseline snapshot merging with out-of-order sequence detection and recovery.
 
+### 18. ClockSync (`ReplicatedStorage/Net/ClockSync.luau`)
+- Client-server clock synchronization engine based on Cristian's algorithm with outlier rejection.
+- Minimum-RTT window filtering focusing on the lowest-latency quartile samples for skew estimation.
+- Strict monotonic server time guarantee preventing retrograding or backward clock warps.
+- Local-to-server and server-to-local timestamp translation helpers with sub-millisecond precision.
+- Ring buffer sample management with automatic outlier rejection during network hitches.
+
+### 19. SparseOctree (`ReplicatedStorage/Spatial/SparseOctree.luau`)
+- 3D hierarchical dynamic octree acceleration structure for volumetric entity queries and cave partitioning.
+- Dynamic node subdivision (8 octants) upon exceeding capacity threshold up to maximum configurable depth.
+- Hierarchical sphere-AABB distance pruning for rapid volumetric radius queries.
+- 3D Axis-Aligned Bounding Box (AABB) intersection testing.
+- Raycast broadphase traversal finding nearest spherical entity intersections with hit distance calculations.
+- Dynamic entity repositioning with fast-path local node checks and cross-octant re-indexing.
+
 ## Testing with Lune
 
-All 17 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 19 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -173,6 +190,8 @@ Test coverage includes:
 - `InterestManager`: Distance-to-tier classification, initial discovery, tick rate cadence, tier transitions, horizon exits, and bandwidth budget limits.
 - `TwoBoneIK`: Analytical solve, pole vector plane, overextension reach clamp, minimum reach singularity protection, ground normal alignment, pelvic drop compensation, and stride prediction.
 - `DeltaCompressor`: Yaw/pitch quantization roundtrips, dirty bitmask tracking, full keyframe serialization, delta buffer compression efficiency, client baseline merging, and 100-entity batch throughput.
+- `ClockSync`: Warm-up progression, Cristian offset estimation, jitter outlier rejection, monotonic server clock, timestamp translation, and ring buffer capacity.
+- `SparseOctree`: 3D node subdivision, 8 child octants, sphere radius queries, 3D AABB queries, raycast intersection, boundary re-indexing, and entity removal.
 
 ## Rojo Sync Workflow
 
