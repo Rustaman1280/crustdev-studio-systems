@@ -44,6 +44,8 @@ local tests = {
   { name = "TokenBucket", path = "./test_token_bucket" },
   { name = "VerletRope", path = "./test_verlet_rope" },
   { name = "TradeEscrow", path = "./test_trade_escrow" },
+  { name = "WaveFunctionCollapse", path = "./test_wave_function_collapse" },
+  { name = "BuoyancySimulator", path = "./test_buoyancy_simulator" },
 }
 
 local passed = 0

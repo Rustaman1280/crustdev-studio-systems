@@ -319,7 +319,7 @@ crustdev-studio-systems/
 
 ## Testing with Lune
 
-All 37 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 39 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -363,6 +363,8 @@ Test coverage includes:
 - `TokenBucket`: Deterministic token bucket rate limiter, burst capacity, continuous token refill, key-based state tracking, escalating penalty cooldowns, tier multipliers, and automatic idle bucket garbage collection.
 - `VerletRope`: Node initialization, gravity integration, distance relaxation, winching, sphere obstacle collision, floor plane collision, tangent vectors, and structural rupture threshold.
 - `TradeEscrow`: State machine progression, offer item/currency manipulation, anti-scam lock revocation, mutual lock transition, countdown timer, atomic commit, and audit receipts.
+- `WaveFunctionCollapse`: Multi-dimensional constraint satisfaction, Shannon minimum-entropy cell selection, directional socket/explicit rule propagation, SplitMix32 deterministic PRNG seed reproduction, and contradiction rollback snapshots.
+- `BuoyancySimulator`: Multi-probe distributed hull sampling, Archimedes fluid displacement, Gerstner wave harmonic simulation with analytical surface normals, anisotropic keel lateral resistance, and symplectic momentum physics integration.
 
 ## Rojo Sync Workflow
 
