@@ -35,10 +35,13 @@ crustdev-studio-systems/
 │   │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
 │   │   ├── Economy/
 │   │   │   ├── InventoryGrid.luau          # 2D spatial inventory with rotation, stacking, and auto-pack
+│   │   │   ├── TradeEscrow.luau            # Atomic two-party trade session with anti-scam lock enforcement
 │   │   │   └── WeightedLootTable.luau      # Deterministic weighted drop engine with luck and pity rules
 │   │   ├── Narrative/
 │   │   │   ├── DialogueGraph.luau             # Branching dialogue tree with condition gates and state persistence
 │   │   │   └── QuestTracker.luau              # Multi-objective quest engine, DAG dependencies, and DataStore sync
+│   │   ├── Physics/
+│   │   │   └── VerletRope.luau             # Dynamic Verlet integration rope, cable, and tear physics
 │   │   ├── Utility/
 │   │   │   ├── BitBuffer.luau              # Compact bit-level stream serializer and deserializer
 │   │   │   ├── FastSignal.luau             # High-cadence zero-allocation event signal with re-entrancy safety
@@ -282,9 +285,41 @@ crustdev-studio-systems/
 - Auto-completion with reward payload dispatching upon satisfying mandatory objectives.
 - Lossless serialization and deserialization routines for DataStore persistence with schema versioning.
 
+### 32. FastSignal (`ReplicatedStorage/Utility/FastSignal.luau`)
+- High-performance, re-entrancy safe event signaling system.
+- Doubly-linked connection list with O(1) connect and disconnect.
+- Error isolation across listeners with Once, Wait, and DisconnectAll routines.
+
+### 33. VoxelFloodFill (`ReplicatedStorage/Spatial/VoxelFloodFill.luau`)
+- 3D discrete voxel flood fill and connected-component labeling.
+- 6-way and 26-way neighbor topology traversal with pointer queue optimization.
+- Subterranean sealed cavity isolation, cluster volume, and center-of-mass calculations.
+
+### 34. BitBuffer (`ReplicatedStorage/Utility/BitBuffer.luau`)
+- Compact bit-level stream serializer and deserializer.
+- Variable-width unsigned integers (1-32 bits), two's complement signed integers, and quantized floats.
+- Length-prefixed string encoding and binary/hex string representations.
+
+### 35. TokenBucket (`ReplicatedStorage/Net/TokenBucket.luau`)
+- Deterministic token bucket rate limiter for network requests and player actions.
+- Continuous fractional token refill, burst capacity limits, and escalating penalties.
+- Dynamic tier multipliers and automatic pruning of stale buckets.
+
+### 36. VerletRope (`ReplicatedStorage/Physics/VerletRope.luau`)
+- Dynamic Verlet integration rope, cable, and cloth physics solver.
+- Distance constraint relaxation via iterative Gauss-Seidel solver.
+- Sphere obstacle and floor plane collisions with ground friction damping.
+- Dynamic winching (reeling in/out), tension tracking, and structural tear detection.
+
+### 37. TradeEscrow (`ReplicatedStorage/Economy/TradeEscrow.luau`)
+- Atomic two-party trade session manager with finite state machine progression.
+- Anti-scam protection: item modifications automatically revoke locks and abort countdowns.
+- Mutual locking prerequisite, safety confirmation countdown window, and atomic commit callback.
+- Comprehensive audit receipt logging with item manifests for server-side verification.
+
 ## Testing with Lune
 
-All 31 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 37 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -326,6 +361,8 @@ Test coverage includes:
 - `VoxelFloodFill`: 6-way and 26-way neighbor topology, pointer-based queue O(1) BFS traversal, disconnected cluster segmentation, subterranean sealed cavity extraction, volume calculation, discrete center of mass, and axis-aligned bounding boxes.
 - `BitBuffer`: Arbitrary bit-width unsigned integers (1-32 bits), two's complement signed integers, float quantization across dynamic bounds, 16-bit length-prefixed strings, hex/binary stream serialization, and cursor seeking.
 - `TokenBucket`: Deterministic token bucket rate limiter, burst capacity, continuous token refill, key-based state tracking, escalating penalty cooldowns, tier multipliers, and automatic idle bucket garbage collection.
+- `VerletRope`: Node initialization, gravity integration, distance relaxation, winching, sphere obstacle collision, floor plane collision, tangent vectors, and structural rupture threshold.
+- `TradeEscrow`: State machine progression, offer item/currency manipulation, anti-scam lock revocation, mutual lock transition, countdown timer, atomic commit, and audit receipts.
 
 ## Rojo Sync Workflow
 

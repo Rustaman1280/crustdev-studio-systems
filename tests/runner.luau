@@ -42,6 +42,8 @@ local tests = {
   { name = "VoxelFloodFill", path = "./test_voxel_flood_fill" },
   { name = "BitBuffer", path = "./test_bit_buffer" },
   { name = "TokenBucket", path = "./test_token_bucket" },
+  { name = "VerletRope", path = "./test_verlet_rope" },
+  { name = "TradeEscrow", path = "./test_trade_escrow" },
 }
 
 local passed = 0
