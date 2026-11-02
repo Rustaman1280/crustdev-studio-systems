@@ -33,7 +33,10 @@ crustdev-studio-systems/
 │   │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
 │   │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
 │   │   ├── Economy/
-│   │   │   └── InventoryGrid.luau          # 2D spatial inventory with rotation, stacking, and auto-pack
+│   │   │   ├── InventoryGrid.luau          # 2D spatial inventory with rotation, stacking, and auto-pack
+│   │   │   └── WeightedLootTable.luau      # Deterministic weighted drop engine with luck and pity rules
+│   │   ├── Utility/
+│   │   │   └── ObjectPool.luau             # High-cadence zero-allocation object pool with lifecycle hooks
 │   │   ├── Spatial/
 │   │   │   ├── SparseOctree.luau          # 3D hierarchical dynamic octree spatial acceleration structure
 │   │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
@@ -222,9 +225,27 @@ crustdev-studio-systems/
 - Non-linear camera trauma system with cubic power falloff for explosions and impacts.
 - FOV spring smoother for high-speed sprinting, dashing, and zoom transitions.
 
+### 26. ObjectPool (`ReplicatedStorage/Utility/ObjectPool.luau`)
+- Zero-allocation object pool for high-frequency game entities (projectiles, VFX parts, damage numbers).
+- Fast O(1) acquire and release operations via contiguous stack with active set tracking.
+- Lifecycle hooks (onCreate, onAcquire, onRelease, onDestroy) for complete state resetting.
+- Configurable growth semantics: bounded or unbounded auto-expansion with capacity exhaustion guards.
+- Batch allocation (AcquireBatch) and bulk reclamation (ReleaseAll / Drain).
+- Real-time telemetry tracking: capacity, active count, free count, peak active count, and recycled volume.
+
+### 27. WeightedLootTable (`ReplicatedStorage/Economy/WeightedLootTable.luau`)
+- Deterministic weighted drop engine with cumulative prefix sum distribution sampling.
+- Tiered classification hierarchy: Common, Uncommon, Rare, Epic, Legendary, Mythic.
+- Dynamic luck multiplier scaling for high-tier item probability without mutating base definitions.
+- Configurable pity counter system with automatic guaranteed drop triggering and counter resets.
+- Guaranteed drop slots awarded unconditionally alongside weighted rolls.
+- Fully deterministic pseudo-random number generator (LCG) for synchronized netcode drops.
+- Supports both with-replacement and without-replacement roll semantics.
+- Recursive sub-table nesting for complex hierarchical loot drop structures.
+
 ## Testing with Lune
 
-All 25 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 27 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -256,6 +277,8 @@ Test coverage includes:
 - `DungeonGraph`: BSP recursive partitioning, seed determinism, airtight wall borders, BFS topology depth solving, Spawn/Boss/Loot classification, raycasting, and ASCII map serialization.
 - `DamagePipeline`: Deterministic crit rolling, hyperbolic armor mitigation, flat/percent armor penetration, elemental affinities, flat reductions, multi-layer shield absorption, true damage bypass, lifesteal, and reflection.
 - `CameraSpring`: Analytical ODE integration, critical damping non-overshoot, underdamped oscillation, recoil kick, trauma cubic dissipation, FOV smooth transitions, and numerical stability under extreme timesteps.
+- `ObjectPool`: Contiguous free stack, active set validation, double-release rejection, custom lifecycle callbacks, capacity exhaustion protection, batch allocation, and drain metrics.
+- `WeightedLootTable`: Deterministic pseudo-random distribution, guaranteed drop separation, luck coefficient scaling, pity threshold triggering, without-replacement selection, and nested loot trees.
 
 ## Rojo Sync Workflow
 

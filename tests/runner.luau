@@ -32,6 +32,8 @@ local tests = {
   { name = "DungeonGraph", path = "./test_dungeon_graph" },
   { name = "DamagePipeline", path = "./test_damage_pipeline" },
   { name = "CameraSpring", path = "./test_camera_spring" },
+  { name = "ObjectPool", path = "./test_object_pool" },
+  { name = "WeightedLootTable", path = "./test_weighted_loot_table" },
 }
 
 local passed = 0
