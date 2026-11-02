@@ -40,6 +40,8 @@ local tests = {
   { name = "QuestTracker", path = "./test_quest_tracker" },
   { name = "FastSignal", path = "./test_fast_signal" },
   { name = "VoxelFloodFill", path = "./test_voxel_flood_fill" },
+  { name = "BitBuffer", path = "./test_bit_buffer" },
+  { name = "TokenBucket", path = "./test_token_bucket" },
 }
 
 local passed = 0

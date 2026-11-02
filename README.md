@@ -40,6 +40,7 @@ crustdev-studio-systems/
 │   │   │   ├── DialogueGraph.luau             # Branching dialogue tree with condition gates and state persistence
 │   │   │   └── QuestTracker.luau              # Multi-objective quest engine, DAG dependencies, and DataStore sync
 │   │   ├── Utility/
+│   │   │   ├── BitBuffer.luau              # Compact bit-level stream serializer and deserializer
 │   │   │   ├── FastSignal.luau             # High-cadence zero-allocation event signal with re-entrancy safety
 │   │   │   └── ObjectPool.luau             # High-cadence zero-allocation object pool with lifecycle hooks
 │   │   ├── Spatial/
@@ -52,7 +53,8 @@ crustdev-studio-systems/
 │   │   └── Net/
 │   │       ├── ClockSync.luau              # Cristian's algorithm clock sync with outlier filtering
 │   │       ├── DeltaCompressor.luau        # Bitmasked delta state serialization and quantization engine
-│   │       └── PacketSchema.luau           # Strict packet serialization and validation
+│   │       ├── PacketSchema.luau           # Strict packet serialization and validation
+│   │       └── TokenBucket.luau            # Rate limiter with burst tokens, refill rate, and penalty cooldowns
 │   ├── ServerScriptService/
 │   │   └── Services/
 │   │       ├── InterestManager.luau        # Area of Interest (AOI) tiered spatial replication engine
@@ -322,6 +324,8 @@ Test coverage includes:
 - `QuestTracker`: Quest definition validation, player level gating, prerequisite DAG chaining, counter and boolean progress increments, automatic completion with rewards, DataStore serialization roundtrip, and failure handling.
 - `FastSignal`: Doubly-linked connection list, re-entrancy safety, Once listeners, yielding Wait, error isolation, DisconnectAll, and Destroy lifecycle.
 - `VoxelFloodFill`: 6-way and 26-way neighbor topology, pointer-based queue O(1) BFS traversal, disconnected cluster segmentation, subterranean sealed cavity extraction, volume calculation, discrete center of mass, and axis-aligned bounding boxes.
+- `BitBuffer`: Arbitrary bit-width unsigned integers (1-32 bits), two's complement signed integers, float quantization across dynamic bounds, 16-bit length-prefixed strings, hex/binary stream serialization, and cursor seeking.
+- `TokenBucket`: Deterministic token bucket rate limiter, burst capacity, continuous token refill, key-based state tracking, escalating penalty cooldowns, tier multipliers, and automatic idle bucket garbage collection.
 
 ## Rojo Sync Workflow
 
