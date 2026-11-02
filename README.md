@@ -40,11 +40,13 @@ crustdev-studio-systems/
 │   │   │   ├── DialogueGraph.luau             # Branching dialogue tree with condition gates and state persistence
 │   │   │   └── QuestTracker.luau              # Multi-objective quest engine, DAG dependencies, and DataStore sync
 │   │   ├── Utility/
+│   │   │   ├── FastSignal.luau             # High-cadence zero-allocation event signal with re-entrancy safety
 │   │   │   └── ObjectPool.luau             # High-cadence zero-allocation object pool with lifecycle hooks
 │   │   ├── Spatial/
 │   │   │   ├── FastVoxelRaycast.luau      # Amanatides and Woo O(N) discrete voxel ray traversal algorithm
 │   │   │   ├── SparseOctree.luau          # 3D hierarchical dynamic octree spatial acceleration structure
-│   │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
+│   │   │   ├── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
+│   │   │   └── VoxelFloodFill.luau         # 3D discrete voxel flood fill, cavity detector, and cluster analysis
 │   │   ├── State/
 │   │   │   └── StateMachine.luau           # Hierarchical Finite State Machine (HFSM) with state stack
 │   │   └── Net/
@@ -318,6 +320,8 @@ Test coverage includes:
 - `DialogueGraph`: Graph integrity validation, linear node progression, condition-gated branching choices, variable mutation hooks, custom event dispatching, and full session serialization/restoration.
 - `FastVoxelRaycast`: WorldToVoxel mapping, VoxelToWorld bounds, single-axis traversal, floor entry normal, solid start detection, max distance limits, oblique 3D raycast, and early-stopping visitor API.
 - `QuestTracker`: Quest definition validation, player level gating, prerequisite DAG chaining, counter and boolean progress increments, automatic completion with rewards, DataStore serialization roundtrip, and failure handling.
+- `FastSignal`: Doubly-linked connection list, re-entrancy safety, Once listeners, yielding Wait, error isolation, DisconnectAll, and Destroy lifecycle.
+- `VoxelFloodFill`: 6-way and 26-way neighbor topology, pointer-based queue O(1) BFS traversal, disconnected cluster segmentation, subterranean sealed cavity extraction, volume calculation, discrete center of mass, and axis-aligned bounding boxes.
 
 ## Rojo Sync Workflow
 

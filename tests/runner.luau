@@ -38,6 +38,8 @@ local tests = {
   { name = "DialogueGraph", path = "./test_dialogue_graph" },
   { name = "FastVoxelRaycast", path = "./test_fast_voxel_raycast" },
   { name = "QuestTracker", path = "./test_quest_tracker" },
+  { name = "FastSignal", path = "./test_fast_signal" },
+  { name = "VoxelFloodFill", path = "./test_voxel_flood_fill" },
 }
 
 local passed = 0
