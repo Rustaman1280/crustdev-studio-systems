@@ -36,6 +36,8 @@ local tests = {
   { name = "WeightedLootTable", path = "./test_weighted_loot_table" },
   { name = "SteeringBehaviors", path = "./test_steering_behaviors" },
   { name = "DialogueGraph", path = "./test_dialogue_graph" },
+  { name = "FastVoxelRaycast", path = "./test_fast_voxel_raycast" },
+  { name = "QuestTracker", path = "./test_quest_tracker" },
 }
 
 local passed = 0

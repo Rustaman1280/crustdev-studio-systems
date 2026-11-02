@@ -20,7 +20,8 @@ crustdev-studio-systems/
 │   │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
 │   │   ├── AI/
 │   │   │   ├── BehaviorTree.luau              # Composable Behavior Tree engine with memory and Blackboard
-│   │   │   └── PathfindingAStar3D.luau        # 3D A* navigation graph, vertical constraints, and path smoothing
+│   │   │   ├── PathfindingAStar3D.luau        # 3D A* navigation graph, vertical constraints, and path smoothing
+│   │   │   └── SteeringBehaviors.luau         # Autonomous agent steering, boids flocking, and obstacle avoidance
 │   │   ├── Animation/
 │   │   │   └── TwoBoneIK.luau                 # Analytical two-bone Inverse Kinematics and foot placement solver
 │   │   ├── Audio/
@@ -35,9 +36,13 @@ crustdev-studio-systems/
 │   │   ├── Economy/
 │   │   │   ├── InventoryGrid.luau          # 2D spatial inventory with rotation, stacking, and auto-pack
 │   │   │   └── WeightedLootTable.luau      # Deterministic weighted drop engine with luck and pity rules
+│   │   ├── Narrative/
+│   │   │   ├── DialogueGraph.luau             # Branching dialogue tree with condition gates and state persistence
+│   │   │   └── QuestTracker.luau              # Multi-objective quest engine, DAG dependencies, and DataStore sync
 │   │   ├── Utility/
 │   │   │   └── ObjectPool.luau             # High-cadence zero-allocation object pool with lifecycle hooks
 │   │   ├── Spatial/
+│   │   │   ├── FastVoxelRaycast.luau      # Amanatides and Woo O(N) discrete voxel ray traversal algorithm
 │   │   │   ├── SparseOctree.luau          # 3D hierarchical dynamic octree spatial acceleration structure
 │   │   │   └── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
 │   │   ├── State/
@@ -259,9 +264,23 @@ crustdev-studio-systems/
 - Visited node tracking with per-node visit counters and traversal history.
 - Full session state serialization and restoration for cross-session player persistence.
 
+### 30. FastVoxelRaycast (`ReplicatedStorage/Spatial/FastVoxelRaycast.luau`)
+- High-performance 3D discrete voxel ray traversal algorithm based on Amanatides and Woo (1987).
+- Traverses discrete voxel grids in exact O(N) step increments without missing cells or continuous step drift.
+- Supports axis-aligned rays without division-by-zero errors.
+- Rich hit inspection: voxel coordinate, contact point, entry face normal, distance, and total step count.
+- Step-by-step visitor traversal callback for projectile piercing, line-of-sight checks, and voxel destruction.
+
+### 31. QuestTracker (`ReplicatedStorage/Narrative/QuestTracker.luau`)
+- Narrative quest progression and multi-objective state machine engine.
+- Objective types: counter thresholds, boolean flags, and timer constraints.
+- Validates prerequisite quest chains (DAG dependencies) and player level gating.
+- Auto-completion with reward payload dispatching upon satisfying mandatory objectives.
+- Lossless serialization and deserialization routines for DataStore persistence with schema versioning.
+
 ## Testing with Lune
 
-All 29 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 31 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -297,6 +316,8 @@ Test coverage includes:
 - `WeightedLootTable`: Deterministic pseudo-random distribution, guaranteed drop separation, luck coefficient scaling, pity threshold triggering, without-replacement selection, and nested loot trees.
 - `SteeringBehaviors`: Single-agent Seek/Flee/Arrive/Pursue/Evade, organic wander jitter, Reynolds boids flocking (Separation, Alignment, Cohesion), forward feeler obstacle avoidance, and semi-implicit Euler integration.
 - `DialogueGraph`: Graph integrity validation, linear node progression, condition-gated branching choices, variable mutation hooks, custom event dispatching, and full session serialization/restoration.
+- `FastVoxelRaycast`: WorldToVoxel mapping, VoxelToWorld bounds, single-axis traversal, floor entry normal, solid start detection, max distance limits, oblique 3D raycast, and early-stopping visitor API.
+- `QuestTracker`: Quest definition validation, player level gating, prerequisite DAG chaining, counter and boolean progress increments, automatic completion with rewards, DataStore serialization roundtrip, and failure handling.
 
 ## Rojo Sync Workflow
 
