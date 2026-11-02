@@ -243,9 +243,25 @@ crustdev-studio-systems/
 - Supports both with-replacement and without-replacement roll semantics.
 - Recursive sub-table nesting for complex hierarchical loot drop structures.
 
+### 28. SteeringBehaviors (`ReplicatedStorage/AI/SteeringBehaviors.luau`)
+- Production-grade autonomous agent steering pipeline based on Craig Reynolds' algorithms.
+- Core single-agent behaviors: Seek, Flee (with panic distance cutoff), Arrive (smooth deceleration ramp without overshoot), Pursue (predictive interception), and Evade.
+- Organic wander behavior using projected circle with per-frame constrained angular jitter.
+- Multi-agent swarm boids: Separation (inverse-distance repulsion), Alignment (velocity matching), Cohesion (center-of-mass pull), and composite Flocking.
+- Obstacle avoidance using forward feeler ray projection and lateral avoidance deflection.
+- Truncated force accumulation, prioritized blending, and semi-implicit Euler kinematic integration.
+
+### 29. DialogueGraph (`ReplicatedStorage/Narrative/DialogueGraph.luau`)
+- Narrative state machine and branching dialogue tree engine for RPGs, quests, and NPCs.
+- Flexible dialogue nodes with conditional gates, player choice prerequisites, and lifecycle action hooks.
+- Rich condition evaluator supporting equality, comparison operators, and array/table membership.
+- Node lifecycle hooks (onEnterActions, onExitActions) and choice execution actions (set, increment, toggle, custom event dispatching).
+- Visited node tracking with per-node visit counters and traversal history.
+- Full session state serialization and restoration for cross-session player persistence.
+
 ## Testing with Lune
 
-All 27 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 29 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -279,6 +295,8 @@ Test coverage includes:
 - `CameraSpring`: Analytical ODE integration, critical damping non-overshoot, underdamped oscillation, recoil kick, trauma cubic dissipation, FOV smooth transitions, and numerical stability under extreme timesteps.
 - `ObjectPool`: Contiguous free stack, active set validation, double-release rejection, custom lifecycle callbacks, capacity exhaustion protection, batch allocation, and drain metrics.
 - `WeightedLootTable`: Deterministic pseudo-random distribution, guaranteed drop separation, luck coefficient scaling, pity threshold triggering, without-replacement selection, and nested loot trees.
+- `SteeringBehaviors`: Single-agent Seek/Flee/Arrive/Pursue/Evade, organic wander jitter, Reynolds boids flocking (Separation, Alignment, Cohesion), forward feeler obstacle avoidance, and semi-implicit Euler integration.
+- `DialogueGraph`: Graph integrity validation, linear node progression, condition-gated branching choices, variable mutation hooks, custom event dispatching, and full session serialization/restoration.
 
 ## Rojo Sync Workflow
 

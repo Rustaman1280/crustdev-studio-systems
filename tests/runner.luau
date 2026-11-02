@@ -34,6 +34,8 @@ local tests = {
   { name = "CameraSpring", path = "./test_camera_spring" },
   { name = "ObjectPool", path = "./test_object_pool" },
   { name = "WeightedLootTable", path = "./test_weighted_loot_table" },
+  { name = "SteeringBehaviors", path = "./test_steering_behaviors" },
+  { name = "DialogueGraph", path = "./test_dialogue_graph" },
 }
 
 local passed = 0
