@@ -380,6 +380,8 @@ Test coverage includes:
 - `FABRIKSolver`: N-link forward/backward reaching inverse kinematics solver, sub-millimeter iterative convergence, joint cone angle constraints, dynamic pole vector bias, and CFrame generation.
 - `CatmullRomSpline`: 3D Catmull-Rom spline evaluator (Uniform, Centripetal, Chordal) with numerical arc-length LUT parameterization for constant-velocity traversal, Rotation-Minimizing Frames (RMF / Bishop frame) via double reflection (eliminating Frenet twisting singularities), closest point projection, and procedural tube/rail geometry extrusion.
 - `DynamicBVH`: Dynamic Bounding Volume Hierarchy (Dynamic AABB Tree) with Surface Area Heuristic (SAH) insertion, self-balancing AVL tree rotations, loose bounding box fattening with velocity lookahead, slab-test raycast pruning, spherical/AABB queries, and broadphase dual-tree overlapping pair detection.
+- `VoronoiDiagram`: 2D Voronoi Diagram and Bowyer-Watson Delaunay Triangulation engine with Sutherland-Hodgman bounding box clipping, Lloyd relaxation for organic biome cell smoothing, neighbor adjacency topology extraction, and multi-metric Worley / cellular distance sampling.
+- `ThirdPersonSpringArm`: Production-grade third-person camera spring arm and orbital boom controller with 6-DOF orientation, configurable pitch clamping, continuous yaw wrapping, predictive raycast/spherecast collision avoidance, asymmetric pullback dynamics, and dual positional/rotational camera lag filters.
 
 ## Rojo Sync Workflow
 

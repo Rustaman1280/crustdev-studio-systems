@@ -56,6 +56,8 @@ local tests = {
   { name = "FABRIKSolver", path = "./test_fabrik_solver" },
   { name = "CatmullRomSpline", path = "./test_catmull_rom_spline" },
   { name = "DynamicBVH", path = "./test_dynamic_bvh" },
+  { name = "VoronoiDiagram", path = "./test_voronoi_diagram" },
+  { name = "ThirdPersonSpringArm", path = "./test_third_person_spring_arm" },
 }
 
 local passed = 0
