@@ -52,6 +52,8 @@ local tests = {
   { name = "GreedyVoxelMesher", path = "./test_greedy_voxel_mesher" },
   { name = "PacejkaTireModel", path = "./test_pacejka_tire_model" },
   { name = "ComboGraph", path = "./test_combo_graph" },
+  { name = "FlowFieldPathfinding", path = "./test_flow_field_pathfinding" },
+  { name = "FABRIKSolver", path = "./test_fabrik_solver" },
 }
 
 local passed = 0

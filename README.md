@@ -20,9 +20,11 @@ crustdev-studio-systems/
 │   │   ├── SynthetixWorldGen.luau         # Deterministic procedural terrain generator
 │   │   ├── AI/
 │   │   │   ├── BehaviorTree.luau              # Composable Behavior Tree engine with memory and Blackboard
+│   │   │   ├── FlowFieldPathfinding.luau      # 2D/3D-projected vector flow field pathfinder with bilinear sampling
 │   │   │   ├── PathfindingAStar3D.luau        # 3D A* navigation graph, vertical constraints, and path smoothing
 │   │   │   └── SteeringBehaviors.luau         # Autonomous agent steering, boids flocking, and obstacle avoidance
 │   │   ├── Animation/
+│   │   │   ├── FABRIKSolver.luau              # Forward/backward reaching inverse kinematics for N-link bone chains
 │   │   │   └── TwoBoneIK.luau                 # Analytical two-bone Inverse Kinematics and foot placement solver
 │   │   ├── Audio/
 │   │   │   └── AdaptiveSoundtrackManager.luau # Dynamic stem crossfader, ducking, and acoustic occlusion
@@ -374,6 +376,8 @@ Test coverage includes:
 - `GreedyVoxelMesher`: Production-grade Mikola Lysenko greedy meshing for 3D discrete voxel volumes, providing 6-directional face culling, 2D slice span-expansion, multi-material boundary preservation, continuous world scaling, and CSG solid bounding box consolidation (achieving 70% to 94% part reduction).
 - `PacejkaTireModel`: Pacejka 'Magic Formula' tire slip curve solver with longitudinal traction (Fx), cornering lateral force (Fy), camber thrust, pneumatic trail decay, self-aligning torque (Mz), first-order carcass transient lag, and friction circle limit enforcement.
 - `ComboGraph`: Directed action combat combo graph pipeline with frame windows (Startup, Active, CancelWindow, Recovery), input buffer queue with timeout decay, hit confirmation gating, diminishing returns damage/hitstun scaling, and aerial branching.
+- `FlowFieldPathfinding`: 2D/3D-projected vector flow field pathfinder, multi-destination Dijkstra wavefront propagation, corner-cutting avoidance, and continuous bilinear sampling.
+- `FABRIKSolver`: N-link forward/backward reaching inverse kinematics solver, sub-millimeter iterative convergence, joint cone angle constraints, dynamic pole vector bias, and CFrame generation.
 
 ## Rojo Sync Workflow
 
