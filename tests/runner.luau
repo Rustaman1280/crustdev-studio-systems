@@ -54,6 +54,8 @@ local tests = {
   { name = "ComboGraph", path = "./test_combo_graph" },
   { name = "FlowFieldPathfinding", path = "./test_flow_field_pathfinding" },
   { name = "FABRIKSolver", path = "./test_fabrik_solver" },
+  { name = "CatmullRomSpline", path = "./test_catmull_rom_spline" },
+  { name = "DynamicBVH", path = "./test_dynamic_bvh" },
 }
 
 local passed = 0

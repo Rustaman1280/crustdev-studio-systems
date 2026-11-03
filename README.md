@@ -324,7 +324,7 @@ crustdev-studio-systems/
 
 ## Testing with Lune
 
-All 45 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 49 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -378,6 +378,8 @@ Test coverage includes:
 - `ComboGraph`: Directed action combat combo graph pipeline with frame windows (Startup, Active, CancelWindow, Recovery), input buffer queue with timeout decay, hit confirmation gating, diminishing returns damage/hitstun scaling, and aerial branching.
 - `FlowFieldPathfinding`: 2D/3D-projected vector flow field pathfinder, multi-destination Dijkstra wavefront propagation, corner-cutting avoidance, and continuous bilinear sampling.
 - `FABRIKSolver`: N-link forward/backward reaching inverse kinematics solver, sub-millimeter iterative convergence, joint cone angle constraints, dynamic pole vector bias, and CFrame generation.
+- `CatmullRomSpline`: 3D Catmull-Rom spline evaluator (Uniform, Centripetal, Chordal) with numerical arc-length LUT parameterization for constant-velocity traversal, Rotation-Minimizing Frames (RMF / Bishop frame) via double reflection (eliminating Frenet twisting singularities), closest point projection, and procedural tube/rail geometry extrusion.
+- `DynamicBVH`: Dynamic Bounding Volume Hierarchy (Dynamic AABB Tree) with Surface Area Heuristic (SAH) insertion, self-balancing AVL tree rotations, loose bounding box fattening with velocity lookahead, slab-test raycast pruning, spherical/AABB queries, and broadphase dual-tree overlapping pair detection.
 
 ## Rojo Sync Workflow
 
