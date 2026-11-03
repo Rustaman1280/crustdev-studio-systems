@@ -50,6 +50,8 @@ local tests = {
   { name = "PriorityQueue", path = "./test_priority_queue" },
   { name = "SpatialKDTree", path = "./test_spatial_kd_tree" },
   { name = "GreedyVoxelMesher", path = "./test_greedy_voxel_mesher" },
+  { name = "PacejkaTireModel", path = "./test_pacejka_tire_model" },
+  { name = "ComboGraph", path = "./test_combo_graph" },
 }
 
 local passed = 0

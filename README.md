@@ -29,6 +29,7 @@ crustdev-studio-systems/
 │   │   ├── Camera/
 │   │   │   └── CameraSpring.luau              # Analytical ODE spring system, recoil kick, and camera trauma
 │   │   ├── Combat/
+│   │   │   ├── ComboGraph.luau             # Directed combat combo graph, frame windows, and damage scaling
 │   │   │   ├── DamagePipeline.luau            # Deterministic multi-stage armor, crit, shield, and lifesteal pipeline
 │   │   │   ├── HitboxCaster.luau           # Continuous raycast and segment sweep collision
 │   │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
@@ -41,6 +42,8 @@ crustdev-studio-systems/
 │   │   │   ├── DialogueGraph.luau             # Branching dialogue tree with condition gates and state persistence
 │   │   │   └── QuestTracker.luau              # Multi-objective quest engine, DAG dependencies, and DataStore sync
 │   │   ├── Physics/
+│   │   │   ├── BuoyancySimulator.luau      # Archimedes fluid displacement and Gerstner wave hull dynamics
+│   │   │   ├── PacejkaTireModel.luau       # Pacejka Magic Formula tire slip, cornering friction circle, and Mz
 │   │   │   └── VerletRope.luau             # Dynamic Verlet integration rope, cable, and tear physics
 │   │   ├── Utility/
 │   │   │   ├── BitBuffer.luau              # Compact bit-level stream serializer and deserializer
@@ -319,7 +322,7 @@ crustdev-studio-systems/
 
 ## Testing with Lune
 
-All 43 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 45 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -369,6 +372,8 @@ Test coverage includes:
 - `PriorityQueue`: High-performance binary heap supporting Min-Heap and Max-Heap modes, O(log N) push/pop, O(1) peek, O(1) key tracking with in-place priority updates, arbitrary key removal, linear O(N) Floyd heapify initialization, capacity bounds with lowest-priority eviction, and stable FIFO tie-breaking.
 - `SpatialKDTree`: 3-dimensional K-D Tree spatial partitioning structure featuring median-cut balanced construction, dynamic incremental insertion/deletion, O(log N) nearest-neighbor search, k-nearest neighbors (k-NN), spherical radius queries, and AABB volume queries.
 - `GreedyVoxelMesher`: Production-grade Mikola Lysenko greedy meshing for 3D discrete voxel volumes, providing 6-directional face culling, 2D slice span-expansion, multi-material boundary preservation, continuous world scaling, and CSG solid bounding box consolidation (achieving 70% to 94% part reduction).
+- `PacejkaTireModel`: Pacejka 'Magic Formula' tire slip curve solver with longitudinal traction (Fx), cornering lateral force (Fy), camber thrust, pneumatic trail decay, self-aligning torque (Mz), first-order carcass transient lag, and friction circle limit enforcement.
+- `ComboGraph`: Directed action combat combo graph pipeline with frame windows (Startup, Active, CancelWindow, Recovery), input buffer queue with timeout decay, hit confirmation gating, diminishing returns damage/hitstun scaling, and aerial branching.
 
 ## Rojo Sync Workflow
 
