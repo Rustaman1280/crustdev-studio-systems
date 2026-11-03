@@ -365,6 +365,8 @@ Test coverage includes:
 - `TradeEscrow`: State machine progression, offer item/currency manipulation, anti-scam lock revocation, mutual lock transition, countdown timer, atomic commit, and audit receipts.
 - `WaveFunctionCollapse`: Multi-dimensional constraint satisfaction, Shannon minimum-entropy cell selection, directional socket/explicit rule propagation, SplitMix32 deterministic PRNG seed reproduction, and contradiction rollback snapshots.
 - `BuoyancySimulator`: Multi-probe distributed hull sampling, Archimedes fluid displacement, Gerstner wave harmonic simulation with analytical surface normals, anisotropic keel lateral resistance, and symplectic momentum physics integration.
+- `PoissonDiskSampling`: Bridson O(N) blue-noise point distribution in 2D and 3D domains, minimum separation enforcement, deterministic PRNG seed reproduction, spatial exclusion volumes, variable distance sampling, and probabilistic thinning filters.
+- `PriorityQueue`: High-performance binary heap supporting Min-Heap and Max-Heap modes, O(log N) push/pop, O(1) peek, O(1) key tracking with in-place priority updates, arbitrary key removal, linear O(N) Floyd heapify initialization, capacity bounds with lowest-priority eviction, and stable FIFO tie-breaking.
 
 ## Rojo Sync Workflow
 

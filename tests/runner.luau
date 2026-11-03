@@ -46,6 +46,8 @@ local tests = {
   { name = "TradeEscrow", path = "./test_trade_escrow" },
   { name = "WaveFunctionCollapse", path = "./test_wave_function_collapse" },
   { name = "BuoyancySimulator", path = "./test_buoyancy_simulator" },
+  { name = "PoissonDiskSampling", path = "./test_poisson_disk_sampling" },
+  { name = "PriorityQueue", path = "./test_priority_queue" },
 }
 
 local passed = 0
