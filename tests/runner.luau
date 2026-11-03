@@ -58,6 +58,8 @@ local tests = {
   { name = "DynamicBVH", path = "./test_dynamic_bvh" },
   { name = "VoronoiDiagram", path = "./test_voronoi_diagram" },
   { name = "ThirdPersonSpringArm", path = "./test_third_person_spring_arm" },
+  { name = "ClothVerletMesh", path = "./test_cloth_verlet_mesh" },
+  { name = "MotionMatchingDatabase", path = "./test_motion_matching_database" },
 }
 
 local passed = 0

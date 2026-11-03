@@ -324,7 +324,7 @@ crustdev-studio-systems/
 
 ## Testing with Lune
 
-All 49 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 53 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -382,6 +382,8 @@ Test coverage includes:
 - `DynamicBVH`: Dynamic Bounding Volume Hierarchy (Dynamic AABB Tree) with Surface Area Heuristic (SAH) insertion, self-balancing AVL tree rotations, loose bounding box fattening with velocity lookahead, slab-test raycast pruning, spherical/AABB queries, and broadphase dual-tree overlapping pair detection.
 - `VoronoiDiagram`: 2D Voronoi Diagram and Bowyer-Watson Delaunay Triangulation engine with Sutherland-Hodgman bounding box clipping, Lloyd relaxation for organic biome cell smoothing, neighbor adjacency topology extraction, and multi-metric Worley / cellular distance sampling.
 - `ThirdPersonSpringArm`: Production-grade third-person camera spring arm and orbital boom controller with 6-DOF orientation, configurable pitch clamping, continuous yaw wrapping, predictive raycast/spherecast collision avoidance, asymmetric pullback dynamics, and dual positional/rotational camera lag filters.
+- `ClothVerletMesh`: 2D mass-spring grid simulation using Verlet numerical integration, structural/shear/flexion constraints, aerodynamic wind pressure with oscillatory gusts, sphere and planar ground colliders with friction, anchor pinning, structural tearing rupture thresholds, and per-vertex normal vector generation.
+- `MotionMatchingDatabase`: High-performance animation synthesis database using Motion Matching, multi-horizon trajectory matching, character-space pose and velocity feature matching, metric weight normalization, continuity hysteresis bias, analytical stick trajectory prediction, and quintic/cubic inertialization blend decay.
 
 ## Rojo Sync Workflow
 
