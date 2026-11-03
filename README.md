@@ -319,7 +319,7 @@ crustdev-studio-systems/
 
 ## Testing with Lune
 
-All 39 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 43 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -367,6 +367,8 @@ Test coverage includes:
 - `BuoyancySimulator`: Multi-probe distributed hull sampling, Archimedes fluid displacement, Gerstner wave harmonic simulation with analytical surface normals, anisotropic keel lateral resistance, and symplectic momentum physics integration.
 - `PoissonDiskSampling`: Bridson O(N) blue-noise point distribution in 2D and 3D domains, minimum separation enforcement, deterministic PRNG seed reproduction, spatial exclusion volumes, variable distance sampling, and probabilistic thinning filters.
 - `PriorityQueue`: High-performance binary heap supporting Min-Heap and Max-Heap modes, O(log N) push/pop, O(1) peek, O(1) key tracking with in-place priority updates, arbitrary key removal, linear O(N) Floyd heapify initialization, capacity bounds with lowest-priority eviction, and stable FIFO tie-breaking.
+- `SpatialKDTree`: 3-dimensional K-D Tree spatial partitioning structure featuring median-cut balanced construction, dynamic incremental insertion/deletion, O(log N) nearest-neighbor search, k-nearest neighbors (k-NN), spherical radius queries, and AABB volume queries.
+- `GreedyVoxelMesher`: Production-grade Mikola Lysenko greedy meshing for 3D discrete voxel volumes, providing 6-directional face culling, 2D slice span-expansion, multi-material boundary preservation, continuous world scaling, and CSG solid bounding box consolidation (achieving 70% to 94% part reduction).
 
 ## Rojo Sync Workflow
 

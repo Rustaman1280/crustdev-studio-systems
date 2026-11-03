@@ -48,6 +48,8 @@ local tests = {
   { name = "BuoyancySimulator", path = "./test_buoyancy_simulator" },
   { name = "PoissonDiskSampling", path = "./test_poisson_disk_sampling" },
   { name = "PriorityQueue", path = "./test_priority_queue" },
+  { name = "SpatialKDTree", path = "./test_spatial_kd_tree" },
+  { name = "GreedyVoxelMesher", path = "./test_greedy_voxel_mesher" },
 }
 
 local passed = 0
