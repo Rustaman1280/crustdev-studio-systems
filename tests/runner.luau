@@ -72,6 +72,8 @@ local tests = {
   { name = "ChunkLODManager", path = "./test_chunk_lod_manager" },
   { name = "ExplosionImpulseSolver", path = "./test_explosion_impulse_solver" },
   { name = "SpatialSoundZone", path = "./test_spatial_sound_zone" },
+  { name = "InfluenceMap", path = "./test_influence_map" },
+  { name = "ParryRiposteWindow", path = "./test_parry_riposte_window" },
 }
 
 local passed = 0

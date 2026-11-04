@@ -23,6 +23,7 @@ crustdev-studio-systems/
 │   │   │   ├── FlowFieldPathfinding.luau      # 2D/3D-projected vector flow field pathfinder with bilinear sampling
 │   │   │   ├── GOAPPlanner.luau               # Goal-Oriented Action Planning with A* state search and cost heuristics
 │   │   │   ├── HTNPlanner.luau                # Hierarchical Task Network (HTN) planner with forward decomposition
+│   │   │   ├── InfluenceMap.luau              # Tactical 2D spatial influence grid, gradient descent, and decay dynamics
 │   │   │   ├── PathfindingAStar3D.luau        # 3D A* navigation graph, vertical constraints, and path smoothing
 │   │   │   ├── SteeringBehaviors.luau         # Autonomous agent steering, boids flocking, and obstacle avoidance
 │   │   │   └── UtilityAI.luau                 # Utility response curves, consideration curves, and action scoring
@@ -41,6 +42,7 @@ crustdev-studio-systems/
 │   │   │   ├── DamagePipeline.luau            # Deterministic multi-stage armor, crit, shield, and lifesteal pipeline
 │   │   │   ├── ExplosionImpulseSolver.luau    # Radial blast physics, shaped charges, and torque dynamics
 │   │   │   ├── HitboxCaster.luau           # Continuous raycast and segment sweep collision
+│   │   │   ├── ParryRiposteWindow.luau     # Frame-timed parry windows, posture stamina, and riposte counters
 │   │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
 │   │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
 │   │   ├── Economy/
