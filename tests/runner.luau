@@ -62,6 +62,8 @@ local tests = {
   { name = "MotionMatchingDatabase", path = "./test_motion_matching_database" },
   { name = "UtilityAI", path = "./test_utility_ai" },
   { name = "AudioOcclusionRaycaster", path = "./test_audio_occlusion_raycaster" },
+  { name = "FrustumCuller", path = "./test_frustum_culler" },
+  { name = "JitterBuffer", path = "./test_jitter_buffer" },
 }
 
 local passed = 0

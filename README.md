@@ -52,15 +52,20 @@ crustdev-studio-systems/
 │   │   │   ├── FastSignal.luau             # High-cadence zero-allocation event signal with re-entrancy safety
 │   │   │   └── ObjectPool.luau             # High-cadence zero-allocation object pool with lifecycle hooks
 │   │   ├── Spatial/
+│   │   │   ├── DynamicBVH.luau            # Dynamic AABB Tree with SAH heuristic and AVL rotations
 │   │   │   ├── FastVoxelRaycast.luau      # Amanatides and Woo O(N) discrete voxel ray traversal algorithm
-│   │   │   ├── SparseOctree.luau          # 3D hierarchical dynamic octree spatial acceleration structure
+│   │   │   ├── FrustumCuller.luau         # 3D view frustum culler with P/N-vertex AABB and sphere tests
 │   │   │   ├── SpatialHashGrid.luau        # O(1) broadphase spatial acceleration structure
+│   │   │   ├── SpatialKDTree.luau         # 3D K-D Tree with k-NN, radius, and AABB volume queries
+│   │   │   ├── SparseOctree.luau          # 3D hierarchical dynamic octree spatial acceleration structure
 │   │   │   └── VoxelFloodFill.luau         # 3D discrete voxel flood fill, cavity detector, and cluster analysis
 │   │   ├── State/
 │   │   │   └── StateMachine.luau           # Hierarchical Finite State Machine (HFSM) with state stack
 │   │   └── Net/
+│   │       ├── ClientPredictionReconciler.luau # Client input prediction with authoritative reconciliation
 │   │       ├── ClockSync.luau              # Cristian's algorithm clock sync with outlier filtering
 │   │       ├── DeltaCompressor.luau        # Bitmasked delta state serialization and quantization engine
+│   │       ├── JitterBuffer.luau           # Adaptive packet jitter buffer with RFC 3550 jitter and PLC
 │   │       ├── PacketSchema.luau           # Strict packet serialization and validation
 │   │       └── TokenBucket.luau            # Rate limiter with burst tokens, refill rate, and penalty cooldowns
 │   ├── ServerScriptService/
@@ -386,6 +391,8 @@ Test coverage includes:
 - `MotionMatchingDatabase`: High-performance animation synthesis database using Motion Matching, multi-horizon trajectory matching, character-space pose and velocity feature matching, metric weight normalization, continuity hysteresis bias, analytical stick trajectory prediction, and quintic/cubic inertialization blend decay.
 - `UtilityAI`: Production-grade utility-based AI decision engine with mathematical response curves (Linear, Polynomial, Logistic, Exponential, SmoothStep, Threshold), normalized considerations, Dave Mark compensation factor, dual momentum and hysteresis damping, action cooldowns, and TopScore / Softmax probabilistic selection.
 - `AudioOcclusionRaycaster`: 3D acoustic propagation and diffraction simulator with material transmission loss modeling (Concrete, Wood, Glass, Metal, Fabric), multi-sample edge diffraction probes, pop-free temporal slew rate filtering, inverse-distance attenuation, and 6-directional cardinal probe bundle for dynamic room enclosure ratio and reverb decay estimation.
+- `FrustumCuller`: High-performance 3D view frustum culler supporting camera extraction (CFrame, vertical FOV, aspect ratio, near/far planes), inward-facing Hessian normal planes, sphere culling with radius tolerance, AABB culling with P/N-vertex sign optimization, OBB culling with effective projection radius, batch tests, and tight frustum bounding boxes.
+- `JitterBuffer`: Enterprise-grade adaptive network packet jitter buffer supporting sequence number wrap-around (16-bit and 32-bit modular arithmetic), RFC 3550 statistical transit delay jitter calculation, dynamic playout delay scaling, out-of-order reordering, late/duplicate packet rejection, packet loss concealment (PLC) frame emission, and smooth playout clock time stretching.
 
 ## Rojo Sync Workflow
 
