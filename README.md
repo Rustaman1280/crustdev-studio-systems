@@ -31,12 +31,15 @@ crustdev-studio-systems/
 │   │   │   ├── FABRIKSolver.luau              # Forward/backward reaching inverse kinematics for N-link bone chains
 │   │   │   └── TwoBoneIK.luau                 # Analytical two-bone Inverse Kinematics and foot placement solver
 │   │   ├── Audio/
-│   │   │   └── AdaptiveSoundtrackManager.luau # Dynamic stem crossfader, ducking, and acoustic occlusion
+│   │   │   ├── AdaptiveSoundtrackManager.luau # Dynamic stem crossfader, ducking, and acoustic occlusion
+│   │   │   ├── AudioOcclusionRaycaster.luau   # 3D acoustic propagation and material transmission loss
+│   │   │   └── SpatialSoundZone.luau          # 3D spatial acoustic reverb and environment manager
 │   │   ├── Camera/
 │   │   │   └── CameraSpring.luau              # Analytical ODE spring system, recoil kick, and camera trauma
 │   │   ├── Combat/
 │   │   │   ├── ComboGraph.luau             # Directed combat combo graph, frame windows, and damage scaling
 │   │   │   ├── DamagePipeline.luau            # Deterministic multi-stage armor, crit, shield, and lifesteal pipeline
+│   │   │   ├── ExplosionImpulseSolver.luau    # Radial blast physics, shaped charges, and torque dynamics
 │   │   │   ├── HitboxCaster.luau           # Continuous raycast and segment sweep collision
 │   │   │   ├── ProjectileSolver.luau       # Sub-step ballistic solver and targeting predictor
 │   │   │   └── StatusEffectManager.luau    # Authoritative buff, debuff, DoT, and CC manager
@@ -407,6 +410,8 @@ Test coverage includes:
 - `AnimationBlendTree`: Hierarchical animation blending engine featuring 1D scalar blend spaces, 2D Cartesian directional blend spaces with normalized Shepard inverse-distance weighting, phase-matching locomotion synchronization, skeletal bone branch masking, additive layer blending, and smooth state cross-fading.
 - `HTNPlanner`: Production-grade Hierarchical Task Network (HTN) planner for AAA-style NPC decision making, tactical squads, and complex goal decomposition, featuring primitive tasks, compound tasks with priority-sorted methods, forward-search total order decomposition with backtracking, and dynamic interruption-aware execution runners.
 - `ChunkLODManager`: High-performance Chunk Level of Detail (LOD) and open-world streaming manager supporting multi-tier distance scheduling, hysteresis deadband boundary filtering to prevent mesh thrashing, frame budget throttling, observer velocity lead projection, and cardinal neighbor LOD deltas for seamless skirt stitching in 2D and 3D environments.
+- `ExplosionImpulseSolver`: High-fidelity blast physics simulation, radial damage attenuation (Linear, Quadratic, Smoothstep, Constant), directional shaped charge cones (Claymores, breaching blasts), line-of-sight occlusion cover mitigation, Kinney-Graham detonation overpressure modeling (peak kPa), acoustic arrival delay, and rigid-body linear impulse and rotational tumbling torque dynamics.
+- `SpatialSoundZone`: Production-grade 3D spatial acoustic reverb and ambient environment manager supporting Box (AABB/OBB), Sphere, and Cylinder geometries, smooth Hermite boundary cross-fading, hierarchical priority nesting for interior/exterior transitions, and critically damped parameter slewing to eliminate audio pops and clicks.
 
 ## Rojo Sync Workflow
 

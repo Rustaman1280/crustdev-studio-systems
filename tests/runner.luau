@@ -70,6 +70,8 @@ local tests = {
   { name = "AnimationBlendTree", path = "./test_animation_blend_tree" },
   { name = "HTNPlanner", path = "./test_htn_planner" },
   { name = "ChunkLODManager", path = "./test_chunk_lod_manager" },
+  { name = "ExplosionImpulseSolver", path = "./test_explosion_impulse_solver" },
+  { name = "SpatialSoundZone", path = "./test_spatial_sound_zone" },
 }
 
 local passed = 0
