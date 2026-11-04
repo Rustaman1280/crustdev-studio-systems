@@ -68,6 +68,8 @@ local tests = {
   { name = "SpringBonePhysics", path = "./test_spring_bone_physics" },
   { name = "VehicleDrivetrain", path = "./test_vehicle_drivetrain" },
   { name = "AnimationBlendTree", path = "./test_animation_blend_tree" },
+  { name = "HTNPlanner", path = "./test_htn_planner" },
+  { name = "ChunkLODManager", path = "./test_chunk_lod_manager" },
 }
 
 local passed = 0

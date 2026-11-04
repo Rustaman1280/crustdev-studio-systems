@@ -22,6 +22,7 @@ crustdev-studio-systems/
 │   │   │   ├── BehaviorTree.luau              # Composable Behavior Tree engine with memory and Blackboard
 │   │   │   ├── FlowFieldPathfinding.luau      # 2D/3D-projected vector flow field pathfinder with bilinear sampling
 │   │   │   ├── GOAPPlanner.luau               # Goal-Oriented Action Planning with A* state search and cost heuristics
+│   │   │   ├── HTNPlanner.luau                # Hierarchical Task Network (HTN) planner with forward decomposition
 │   │   │   ├── PathfindingAStar3D.luau        # 3D A* navigation graph, vertical constraints, and path smoothing
 │   │   │   ├── SteeringBehaviors.luau         # Autonomous agent steering, boids flocking, and obstacle avoidance
 │   │   │   └── UtilityAI.luau                 # Utility response curves, consideration curves, and action scoring
@@ -58,6 +59,7 @@ crustdev-studio-systems/
 │   │   │   ├── FastSignal.luau             # High-cadence zero-allocation event signal with re-entrancy safety
 │   │   │   └── ObjectPool.luau             # High-cadence zero-allocation object pool with lifecycle hooks
 │   │   ├── Spatial/
+│   │   │   ├── ChunkLODManager.luau       # Multi-tier chunk LOD manager with hysteresis and frame budgeting
 │   │   │   ├── DynamicBVH.luau            # Dynamic AABB Tree with SAH heuristic and AVL rotations
 │   │   │   ├── FastVoxelRaycast.luau      # Amanatides and Woo O(N) discrete voxel ray traversal algorithm
 │   │   │   ├── FrustumCuller.luau         # 3D view frustum culler with P/N-vertex AABB and sphere tests
@@ -403,6 +405,8 @@ Test coverage includes:
 - `SpringBonePhysics`: Secondary animation (jiggle bone) simulation system for hairs, tails, capes, and accessories, featuring Verlet integration, Hooke spring return forces, invariant bone link lengths, angular cone limits, spherical collider push-out with PBD relaxation, and external impulse/wind response.
 - `VehicleDrivetrain`: Vehicular powertrain, transmission, differential, and wheel dynamics engine featuring piecewise torque curves, idle governor, rev-limiter fuel cut, manual/automatic transmission with gear ratios and shift hysteresis, Open/LSD/Locked differential torque distribution, service and emergency handbraking, and longitudinal slip ratio calculation.
 - `AnimationBlendTree`: Hierarchical animation blending engine featuring 1D scalar blend spaces, 2D Cartesian directional blend spaces with normalized Shepard inverse-distance weighting, phase-matching locomotion synchronization, skeletal bone branch masking, additive layer blending, and smooth state cross-fading.
+- `HTNPlanner`: Production-grade Hierarchical Task Network (HTN) planner for AAA-style NPC decision making, tactical squads, and complex goal decomposition, featuring primitive tasks, compound tasks with priority-sorted methods, forward-search total order decomposition with backtracking, and dynamic interruption-aware execution runners.
+- `ChunkLODManager`: High-performance Chunk Level of Detail (LOD) and open-world streaming manager supporting multi-tier distance scheduling, hysteresis deadband boundary filtering to prevent mesh thrashing, frame budget throttling, observer velocity lead projection, and cardinal neighbor LOD deltas for seamless skirt stitching in 2D and 3D environments.
 
 ## Rojo Sync Workflow
 
