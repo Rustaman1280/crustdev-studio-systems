@@ -26,6 +26,7 @@ crustdev-studio-systems/
 │   │   │   ├── SteeringBehaviors.luau         # Autonomous agent steering, boids flocking, and obstacle avoidance
 │   │   │   └── UtilityAI.luau                 # Utility response curves, consideration curves, and action scoring
 │   │   ├── Animation/
+│   │   │   ├── AnimationBlendTree.luau        # Hierarchical 1D/2D blend spaces, normalized phase sync, and bone masking
 │   │   │   ├── FABRIKSolver.luau              # Forward/backward reaching inverse kinematics for N-link bone chains
 │   │   │   └── TwoBoneIK.luau                 # Analytical two-bone Inverse Kinematics and foot placement solver
 │   │   ├── Audio/
@@ -50,6 +51,7 @@ crustdev-studio-systems/
 │   │   │   ├── ClothVerletMesh.luau        # 2D Verlet mass-spring cloth grid with wind, tearing, and colliders
 │   │   │   ├── PacejkaTireModel.luau       # Pacejka Magic Formula tire slip, cornering friction circle, and Mz
 │   │   │   ├── SpringBonePhysics.luau      # Secondary animation jiggle physics with cone limits and colliders
+│   │   │   ├── VehicleDrivetrain.luau      # Powertrain, gearbox, LSD differential, and wheel dynamics simulation
 │   │   │   └── VerletRope.luau             # Dynamic Verlet integration rope, cable, and tear physics
 │   │   ├── Utility/
 │   │   │   ├── BitBuffer.luau              # Compact bit-level stream serializer and deserializer
@@ -399,6 +401,8 @@ Test coverage includes:
 - `JitterBuffer`: Enterprise-grade adaptive network packet jitter buffer supporting sequence number wrap-around (16-bit and 32-bit modular arithmetic), RFC 3550 statistical transit delay jitter calculation, dynamic playout delay scaling, out-of-order reordering, late/duplicate packet rejection, packet loss concealment (PLC) frame emission, and smooth playout clock time stretching.
 - `GOAPPlanner`: Goal-Oriented Action Planning (GOAP) engine featuring A* heuristic forward search over world states, admissible unmet-condition heuristic, procedural and static action costs, cycle prevention via canonical state hashing, bounded search cutoffs, and execution plan validation.
 - `SpringBonePhysics`: Secondary animation (jiggle bone) simulation system for hairs, tails, capes, and accessories, featuring Verlet integration, Hooke spring return forces, invariant bone link lengths, angular cone limits, spherical collider push-out with PBD relaxation, and external impulse/wind response.
+- `VehicleDrivetrain`: Vehicular powertrain, transmission, differential, and wheel dynamics engine featuring piecewise torque curves, idle governor, rev-limiter fuel cut, manual/automatic transmission with gear ratios and shift hysteresis, Open/LSD/Locked differential torque distribution, service and emergency handbraking, and longitudinal slip ratio calculation.
+- `AnimationBlendTree`: Hierarchical animation blending engine featuring 1D scalar blend spaces, 2D Cartesian directional blend spaces with normalized Shepard inverse-distance weighting, phase-matching locomotion synchronization, skeletal bone branch masking, additive layer blending, and smooth state cross-fading.
 
 ## Rojo Sync Workflow
 

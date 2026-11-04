@@ -66,6 +66,8 @@ local tests = {
   { name = "JitterBuffer", path = "./test_jitter_buffer" },
   { name = "GOAPPlanner", path = "./test_goap_planner" },
   { name = "SpringBonePhysics", path = "./test_spring_bone_physics" },
+  { name = "VehicleDrivetrain", path = "./test_vehicle_drivetrain" },
+  { name = "AnimationBlendTree", path = "./test_animation_blend_tree" },
 }
 
 local passed = 0
