@@ -64,6 +64,8 @@ local tests = {
   { name = "AudioOcclusionRaycaster", path = "./test_audio_occlusion_raycaster" },
   { name = "FrustumCuller", path = "./test_frustum_culler" },
   { name = "JitterBuffer", path = "./test_jitter_buffer" },
+  { name = "GOAPPlanner", path = "./test_goap_planner" },
+  { name = "SpringBonePhysics", path = "./test_spring_bone_physics" },
 }
 
 local passed = 0

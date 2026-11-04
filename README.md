@@ -21,8 +21,10 @@ crustdev-studio-systems/
 │   │   ├── AI/
 │   │   │   ├── BehaviorTree.luau              # Composable Behavior Tree engine with memory and Blackboard
 │   │   │   ├── FlowFieldPathfinding.luau      # 2D/3D-projected vector flow field pathfinder with bilinear sampling
+│   │   │   ├── GOAPPlanner.luau               # Goal-Oriented Action Planning with A* state search and cost heuristics
 │   │   │   ├── PathfindingAStar3D.luau        # 3D A* navigation graph, vertical constraints, and path smoothing
-│   │   │   └── SteeringBehaviors.luau         # Autonomous agent steering, boids flocking, and obstacle avoidance
+│   │   │   ├── SteeringBehaviors.luau         # Autonomous agent steering, boids flocking, and obstacle avoidance
+│   │   │   └── UtilityAI.luau                 # Utility response curves, consideration curves, and action scoring
 │   │   ├── Animation/
 │   │   │   ├── FABRIKSolver.luau              # Forward/backward reaching inverse kinematics for N-link bone chains
 │   │   │   └── TwoBoneIK.luau                 # Analytical two-bone Inverse Kinematics and foot placement solver
@@ -45,7 +47,9 @@ crustdev-studio-systems/
 │   │   │   └── QuestTracker.luau              # Multi-objective quest engine, DAG dependencies, and DataStore sync
 │   │   ├── Physics/
 │   │   │   ├── BuoyancySimulator.luau      # Archimedes fluid displacement and Gerstner wave hull dynamics
+│   │   │   ├── ClothVerletMesh.luau        # 2D Verlet mass-spring cloth grid with wind, tearing, and colliders
 │   │   │   ├── PacejkaTireModel.luau       # Pacejka Magic Formula tire slip, cornering friction circle, and Mz
+│   │   │   ├── SpringBonePhysics.luau      # Secondary animation jiggle physics with cone limits and colliders
 │   │   │   └── VerletRope.luau             # Dynamic Verlet integration rope, cable, and tear physics
 │   │   ├── Utility/
 │   │   │   ├── BitBuffer.luau              # Compact bit-level stream serializer and deserializer
@@ -393,6 +397,8 @@ Test coverage includes:
 - `AudioOcclusionRaycaster`: 3D acoustic propagation and diffraction simulator with material transmission loss modeling (Concrete, Wood, Glass, Metal, Fabric), multi-sample edge diffraction probes, pop-free temporal slew rate filtering, inverse-distance attenuation, and 6-directional cardinal probe bundle for dynamic room enclosure ratio and reverb decay estimation.
 - `FrustumCuller`: High-performance 3D view frustum culler supporting camera extraction (CFrame, vertical FOV, aspect ratio, near/far planes), inward-facing Hessian normal planes, sphere culling with radius tolerance, AABB culling with P/N-vertex sign optimization, OBB culling with effective projection radius, batch tests, and tight frustum bounding boxes.
 - `JitterBuffer`: Enterprise-grade adaptive network packet jitter buffer supporting sequence number wrap-around (16-bit and 32-bit modular arithmetic), RFC 3550 statistical transit delay jitter calculation, dynamic playout delay scaling, out-of-order reordering, late/duplicate packet rejection, packet loss concealment (PLC) frame emission, and smooth playout clock time stretching.
+- `GOAPPlanner`: Goal-Oriented Action Planning (GOAP) engine featuring A* heuristic forward search over world states, admissible unmet-condition heuristic, procedural and static action costs, cycle prevention via canonical state hashing, bounded search cutoffs, and execution plan validation.
+- `SpringBonePhysics`: Secondary animation (jiggle bone) simulation system for hairs, tails, capes, and accessories, featuring Verlet integration, Hooke spring return forces, invariant bone link lengths, angular cone limits, spherical collider push-out with PBD relaxation, and external impulse/wind response.
 
 ## Rojo Sync Workflow
 
