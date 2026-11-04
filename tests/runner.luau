@@ -60,6 +60,8 @@ local tests = {
   { name = "ThirdPersonSpringArm", path = "./test_third_person_spring_arm" },
   { name = "ClothVerletMesh", path = "./test_cloth_verlet_mesh" },
   { name = "MotionMatchingDatabase", path = "./test_motion_matching_database" },
+  { name = "UtilityAI", path = "./test_utility_ai" },
+  { name = "AudioOcclusionRaycaster", path = "./test_audio_occlusion_raycaster" },
 }
 
 local passed = 0

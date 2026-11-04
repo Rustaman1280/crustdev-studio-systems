@@ -324,7 +324,7 @@ crustdev-studio-systems/
 
 ## Testing with Lune
 
-All 53 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
+All 55 core modules feature automated standalone Luau test coverage executed via [Lune](https://github.com/lune-org/lune):
 
 ```bash
 lune run tests/runner.luau
@@ -384,6 +384,8 @@ Test coverage includes:
 - `ThirdPersonSpringArm`: Production-grade third-person camera spring arm and orbital boom controller with 6-DOF orientation, configurable pitch clamping, continuous yaw wrapping, predictive raycast/spherecast collision avoidance, asymmetric pullback dynamics, and dual positional/rotational camera lag filters.
 - `ClothVerletMesh`: 2D mass-spring grid simulation using Verlet numerical integration, structural/shear/flexion constraints, aerodynamic wind pressure with oscillatory gusts, sphere and planar ground colliders with friction, anchor pinning, structural tearing rupture thresholds, and per-vertex normal vector generation.
 - `MotionMatchingDatabase`: High-performance animation synthesis database using Motion Matching, multi-horizon trajectory matching, character-space pose and velocity feature matching, metric weight normalization, continuity hysteresis bias, analytical stick trajectory prediction, and quintic/cubic inertialization blend decay.
+- `UtilityAI`: Production-grade utility-based AI decision engine with mathematical response curves (Linear, Polynomial, Logistic, Exponential, SmoothStep, Threshold), normalized considerations, Dave Mark compensation factor, dual momentum and hysteresis damping, action cooldowns, and TopScore / Softmax probabilistic selection.
+- `AudioOcclusionRaycaster`: 3D acoustic propagation and diffraction simulator with material transmission loss modeling (Concrete, Wood, Glass, Metal, Fabric), multi-sample edge diffraction probes, pop-free temporal slew rate filtering, inverse-distance attenuation, and 6-directional cardinal probe bundle for dynamic room enclosure ratio and reverb decay estimation.
 
 ## Rojo Sync Workflow
 
