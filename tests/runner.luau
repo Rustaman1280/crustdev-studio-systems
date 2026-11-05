@@ -74,6 +74,8 @@ local tests = {
   { name = "SpatialSoundZone", path = "./test_spatial_sound_zone" },
   { name = "InfluenceMap", path = "./test_influence_map" },
   { name = "ParryRiposteWindow", path = "./test_parry_riposte_window" },
+  { name = "TargetingReticleSolver", path = "./test_targeting_reticle_solver" },
+  { name = "CraftingRecipeTree", path = "./test_crafting_recipe_tree" },
 }
 
 local passed = 0
